@@ -17,3 +17,16 @@ CREATE UNIQUE INDEX "HeldActionReceipt_kind_actionId_key"
     ON "HeldActionReceipt"("kind", "actionId");
 CREATE INDEX "HeldActionReceipt_guildId_createdAt_idx"
     ON "HeldActionReceipt"("guildId", "createdAt");
+
+CREATE FUNCTION prevent_held_action_receipt_change()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    RAISE EXCEPTION 'Held action recovery receipts are immutable';
+END;
+$$;
+
+CREATE TRIGGER "HeldActionReceipt_immutable"
+BEFORE UPDATE OR DELETE ON "HeldActionReceipt"
+FOR EACH ROW EXECUTE FUNCTION prevent_held_action_receipt_change();

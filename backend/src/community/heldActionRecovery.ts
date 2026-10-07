@@ -12,6 +12,7 @@ import {
 import { db } from '../db';
 import { toInputJson } from '../utils/prismaJson';
 
+import { ticketConfig } from './config';
 import { ticketOverwrites } from './tickets';
 
 const recoveryKinds = ['role-choice', 'ticket-action'] as const;
@@ -353,6 +354,12 @@ export async function confirmHeldAction(
         throw new Error(
             'This legacy ticket action lacks the target needed for safe reconciliation'
         );
+    const settings = await db.guildModuleConfig.findUnique({
+        where: { guildId_moduleId: { guildId, moduleId: 'tickets' } },
+    });
+    if (!settings)
+        throw new Error('Ticket settings unavailable for reconciliation');
+    const retention = ticketConfig.parse(settings.config).retentionDays;
     const { guild, channel } = await currentTicketChannel(
         client,
         guildId,
@@ -414,7 +421,18 @@ export async function confirmHeldAction(
                     closedAt:
                         desired.state === 'CLOSED'
                             ? new Date()
-                            : current.closedAt,
+                            : desired.state === 'OPEN'
+                              ? null
+                              : current.closedAt,
+                    expiresAt:
+                        desired.state === 'CLOSED'
+                            ? current.expiresAt &&
+                              current.expiresAt > new Date()
+                                ? current.expiresAt
+                                : new Date(Date.now() + retention * 86400000)
+                            : desired.state === 'OPEN'
+                              ? null
+                              : current.expiresAt,
                 },
             });
             if (released.count !== 1)
@@ -529,12 +547,16 @@ export async function routeHeldActionRecovery(
     interaction: ChatInputCommandInteraction
 ): Promise<boolean> {
     if (interaction.commandName !== 'recovery') return false;
-    const actor = await interaction.guild!.members.fetch({
+    const guild = await interaction.client.guilds.fetch({
+        guild: interaction.guildId!,
+        force: true,
+    });
+    const actor = await guild.members.fetch({
         user: interaction.user.id,
         force: true,
     });
     if (
-        interaction.guild!.ownerId !== actor.id &&
+        guild.ownerId !== actor.id &&
         !actor.permissions.has(PermissionFlagsBits.Administrator) &&
         !actor.permissions.has(PermissionFlagsBits.ManageGuild)
     )
