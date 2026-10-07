@@ -966,6 +966,23 @@ model RoleChoiceLock {
   @@id([guildId, userId])
 }
 
+// An append-only operator receipt for a held ticket or self-role action. The
+// original action row remains the primary record; this captures the verified
+// Discord readback that justified releasing its protection lock.
+model HeldActionReceipt {
+  id          String   @id @default(uuid())
+  guildId     String
+  kind        String
+  actionId    String
+  actorId     String
+  evidence    Json     @db.JsonB
+  evidenceHash String
+  createdAt   DateTime @default(now()) @db.Timestamptz
+
+  @@unique([kind, actionId])
+  @@index([guildId, createdAt])
+}
+
 model SpamSample {
   id String @id @default(uuid())
   guildId String

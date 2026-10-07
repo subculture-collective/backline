@@ -23,6 +23,10 @@ import {
     routeCustomCommands,
 } from '../community/customCommands';
 import { giveawayCommand, routeGiveaways } from '../community/giveaways';
+import {
+    recoveryCommand,
+    routeHeldActionRecovery,
+} from '../community/heldActionRecovery';
 import { routeLeveling, xpCommand } from '../community/leveling';
 import {
     memberUtilityCommands,
@@ -188,6 +192,8 @@ export async function routeInteraction(
         if (await routeSuggestions(interaction)) return;
         if (await routeMemberUtilities(interaction)) return;
         if (await routeSelfRoles(interaction)) return;
+        if (interaction.isChatInputCommand() && (await routeHeldActionRecovery(interaction)))
+            return;
         if (!interaction.isChatInputCommand()) {
             await interaction.editReply(
                 'This control is unknown or expired. Open a new panel with the relevant command.'
@@ -453,6 +459,7 @@ export async function registerGuildCommands(
             pollCommand,
             suggestCommand,
             ...memberUtilityCommands,
+            recoveryCommand,
         ])
             await guild.commands.create(command);
     }

@@ -18,6 +18,7 @@ import {
     levelingConfig,
     communityReportsConfig,
 } from '../community/config';
+import { listHeldActions } from '../community/heldActionRecovery';
 import { db } from '../db';
 import {
     originalTemplates,
@@ -681,6 +682,16 @@ router.get('/guilds/:guildId/modules/self-roles/history', async (req, res) => {
         res.status(503).json({ error: 'Role choice history unavailable' });
     }
 });
+router.get(
+    '/guilds/:guildId/modules/recovery/held-actions',
+    async (req, res) => {
+        try {
+            res.json(await listHeldActions(req.params.guildId));
+        } catch {
+            res.status(503).json({ error: 'Held action history unavailable' });
+        }
+    }
+);
 router.get('/guilds/:guildId/modules/onboarding/history', async (req, res) => {
     try {
         res.json(

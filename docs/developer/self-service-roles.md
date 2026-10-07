@@ -6,7 +6,15 @@ Button presses toggle one offered role. Selecting a menu applies the selected of
 
 Each panel stores its server, channel, message ID and validated configuration hash. Changing settings invalidates old controls. The handler fetches current membership, bot permissions and each changed role. Managed roles, elevated permissions and roles at or above the bot are denied even if they became privileged after publication. Only the basic chat/voice permission allowlist is eligible.
 
-Role choices persist by server/interaction ID, so repeated delivery cannot toggle twice. A per-member database lock serializes choices. The handler reads Discord back before recording success. An interrupted mutation is `UNCERTAIN` and retains the lock; subsequent choices remain held. A crash can leave a `PENDING` choice with the same protection. Before clearing a held lock, an operator must stop the affected bot worker, inspect the action and actual Discord roles, and preserve the receipt. The application does not guess an outcome or clear locks automatically. This recovery path still needs a supported owner workflow before public release.
+Role choices persist by server/interaction ID, so repeated delivery cannot toggle twice. A per-member database lock serializes choices. The handler reads Discord back before recording success. An interrupted mutation is `UNCERTAIN` and retains the lock; subsequent choices remain held. A crash can leave a `PENDING` choice with the same protection. Before confirming a held lock, an operator must inspect the action and current Discord roles while avoiding concurrent role-panel activity for that member. The application does not guess an outcome or clear locks automatically.
+
+## Held-action recovery
+
+The recovery inventory is available to current server managers at `GET /guilds/:guildId/modules/recovery/held-actions`. It exposes only `UNCERTAIN` action records and does not modify Discord or release a lock. A `PENDING` record can still belong to an active worker and is not recoverable through this path.
+
+For the live recovery, use `/recovery inspect kind:role-choice action-id:<UUID>` in the affected server. The command fetches the member's current roles and returns an evidence hash. After independently comparing that readback with the held record, run `/recovery confirm-current` with the exact action ID and evidence hash. Backline fetches the member again before writing an immutable recovery receipt. A changed role set or a stale hash fails closed. On a match, the choice becomes `RECONCILED` and only its matching per-member lock is released.
+
+Confirmation records the current Discord role set; it does not rerun the old add/remove request or infer a missed mutation. Operators should pause or drain concurrent role-panel activity for that member while investigating. A changed panel policy, unavailable member or failed Discord readback leaves the lock held.
 
 Panels and choices survive restart. Publishing the same configuration returns its existing message ID; deleted panels currently require a configuration change and republish. Reaction roles are not enabled. `GET /guilds/:guildId/modules/self-roles/history` exposes the last 100 choices to current server managers. Disabling the module rejects future controls; existing messages remain in Discord.
 
