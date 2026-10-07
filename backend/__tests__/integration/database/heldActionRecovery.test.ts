@@ -110,6 +110,11 @@ databaseTests('held action recovery', () => {
                 },
             })
         ).resolves.toMatchObject({ guildId, actorId: 'operator' });
+        await expect(
+            db.$executeRawUnsafe(
+                'UPDATE "HeldActionReceipt" SET "actorId" = \'changed\''
+            )
+        ).rejects.toThrow('immutable');
     });
 
     it('refuses a pending action and allows only one concurrent confirmation', async () => {
