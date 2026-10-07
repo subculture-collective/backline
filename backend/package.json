@@ -114,6 +114,7 @@
     "overrides": {
         "@prisma/config": {
             "deepmerge-ts": "8.0.2"
-        }
+        },
+        "proxy-addr": "2.0.8"
     }
 }

@@ -213,6 +213,10 @@ jobs:
 
             - name: Upload build artifacts
               uses: actions/upload-artifact@v3
+              # Gitea's artifact service currently times out while finalizing this
+              # otherwise successful build. Keep the build gate on Gitea; retain
+              # artifact publishing for GitHub until the Gitea service is repaired.
+              if: github.server_url == 'https://github.com'
               with:
                   name: backend-dist
                   path: backend/dist

@@ -7,6 +7,10 @@ on:
     paths:
       - 'docs/**'
       - '.github/workflows/deploy-docs.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:
 
 # Allow one concurrent deployment
@@ -38,10 +42,12 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        if: github.server_url == 'https://github.com'
         with:
           path: docs/.vitepress/dist
 
   deploy:
+    if: github.server_url == 'https://github.com'
     needs: build
     runs-on: ubuntu-latest
     
