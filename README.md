@@ -2,15 +2,11 @@
 
 # Backline
 
-**Keep your people together.** Backline is the toolkit behind a Discord community: a bot and a dashboard that welcome new members, keep moderation honest, give members a private place to ask for help, and let your server run its own events, levels, feeds and radio. Switch on only what your server needs. Everything else stays off.
+**Keep your people together.** Backline is a Discord bot with a web dashboard for the people who run a server. It welcomes new members, keeps a record of moderation, gives members a private place to ask for help, and runs events, levels, feeds and audio. Every module starts switched off; turn on the ones your server needs.
 
-[CI on Gitea](https://git.subcult.tv/subculture-collective/backline/actions)
+Backline is a release candidate in a private pilot with the SUBCULT community. Public installation is not open yet. The landing page is at [backline.subcult.tv](https://backline.subcult.tv/). You can run your own copy from this repository.
 
-Backline is a SUBCULT tool. It is a release candidate in a **private pilot** with the SUBCULT community. Public installation is not open yet; the pilot is where setup, permissions and real-server behavior get checked before a wider release. Source of record: [git.subcult.tv/subculture-collective/backline](https://git.subcult.tv/subculture-collective/backline).
-
-## Why Backline
-
-Most community bots hand you a hundred commands and a config file. Backline hands you **jobs**.
+## What it does
 
 - **A good first hello.** Welcome messages, a rules gate, and roles members pick for themselves.
 - **Keep the context.** Warnings, timeouts, kicks, bans and purges land in a case history with a reason and the staff member who acted. Delivery is confirmed against current Discord permissions, never assumed.
@@ -24,11 +20,11 @@ Most community bots hand you a hundred commands and a config file. Backline hand
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | Welcome and community   | Onboarding, self-assigned roles, birthdays, AFK status, suggestions, polls, community reports                              |
 | Safety and records      | Moderation, anti-spam, audit log, private tickets, activity reports                                                        |
-| Engagement              | Leveling, giveaways, economy, entertainment, audio (approved SomaFM stations, clips and soundboards)                       |
+| Engagement              | Leveling, giveaways, economy, entertainment, audio (radio, clips and soundboards)                                          |
 | Automation and recovery | Scheduled utilities, custom commands, Twitch/YouTube/RSS integrations, workflows, recovery snapshots and selective restore |
 | Operator extensions     | Plugins installed by the bot operator                                                                                      |
 
-Each module has a developer note under [`docs/developer/`](./docs/developer/), for example [onboarding](./docs/developer/onboarding.md), [moderation](./docs/developer/moderation.md), [tickets](./docs/developer/tickets.md) and [recovery](./docs/developer/selective-restore.md). The [bot expansion roadmap](./docs/developer/bot-expansion-roadmap.md) records what is built, what is planned, and the qualification gate for each.
+Each module has a developer note under [`docs/developer/`](./docs/developer/), for example [onboarding](./docs/developer/onboarding.md), [moderation](./docs/developer/moderation.md), [tickets](./docs/developer/tickets.md) and [recovery](./docs/developer/selective-restore.md).
 
 ## The dashboard
 
@@ -166,15 +162,13 @@ npm run test:e2e          # Playwright
 npm run test:coverage
 ```
 
-Frontend tests run under jsdom with a storage polyfill for current Node releases. See [TESTING.md](./TESTING.md) for the test layout and [docs/developer/release-qualification.md](./docs/developer/release-qualification.md) for what a release has to pass.
+Frontend tests run under jsdom. See [TESTING.md](./TESTING.md) for the test layout.
 
-## CI and releases
+## Deploy
 
-Gitea is the source of record. Its action-compatible workflows run backend, frontend, database and image checks for pull requests and reviewed revisions. The GitHub mirror and the legacy GitHub/AWS workflows are not a release path.
+[compose.release.yml](./compose.release.yml) runs a release: PostgreSQL, Redis, a one-off migration step, the API, a single bot and job worker, and the compiled dashboard. Run exactly one bot replica, because it owns the Discord Gateway session. Copy `release-example.env` and `release-runtime-example.env` to a private location, fill them in, and point the Compose file at your backend and dashboard images. [DEPLOYMENT.md](./DEPLOYMENT.md) walks through the steps, backups and a restore check.
 
-The supported release topology is [compose.release.yml](./compose.release.yml): PostgreSQL, Redis, one migration barrier, one API, one bot and job worker, and the compiled dashboard. Deployments are operator-controlled. Select immutable image digests from the reviewed revision, run the migration barrier, and verify the bot heartbeat, API readiness and dashboard health. [Deploy a Backline release](./DEPLOYMENT.md) covers the procedure, backup and disposable restore verification.
-
-`docker-compose.prod.yml`, `deploy.yml` and `deploy-production.yml` describe legacy paths and are not current deployment instructions.
+`docker-compose.prod.yml` and the `k8s/`, `helm/` and `terraform/` directories come from earlier work and are not the documented release path.
 
 ## API, SDK and plugins
 
@@ -184,9 +178,7 @@ The API is guild-scoped: `/api/guilds`, `/api/guilds/:guildId/modules`, `/api/gu
 - [Public API reference](./docs/PUBLIC_API.md), [developer guide](./docs/DEVELOPER_GUIDE.md), [authentication](./docs/api/AUTHENTICATION_GUIDE.md), [rate limiting](./docs/api/RATE_LIMITING_GUIDE.md)
 - The public API uses API keys with tier-based quotas (FREE, PRO, ENTERPRISE) and per-endpoint rate limits.
 
-```bash
-npm install @spywatcher/sdk
-```
+The TypeScript SDK lives in [`sdk/`](./sdk/) (package name `@spywatcher/sdk`):
 
 ```typescript
 import { Spywatcher } from '@spywatcher/sdk';
@@ -232,8 +224,10 @@ npm run type-check
 
 ## Contributing
 
-Read the [contributing guidelines](./CONTRIBUTING.md) and the [code of conduct](./CODE_OF_CONDUCT.md). Pull requests go to Gitea; the review process and commit conventions are documented under [`docs/developer/`](./docs/developer/).
+Open a pull request on GitHub against `main`. Read the [contributing guidelines](./CONTRIBUTING.md), the [code of conduct](./CODE_OF_CONDUCT.md) and the [security policy](./SECURITY.md). Commit messages follow Conventional Commits.
+
+CI runs on every pull request: backend lint, type check, Prisma validation, build, tests and PostgreSQL integration tests; frontend lint, type check, tests, build and Playwright end-to-end tests; a documentation build; dependency audits; and image, Compose and secret scans. All of them must pass before a pull request can merge.
 
 ## License
 
-`GPL-3.0-or-later`. See [LICENSE](LICENSE).
+GNU General Public License, version 3 or later (`GPL-3.0-or-later`). See [LICENSE](LICENSE).
