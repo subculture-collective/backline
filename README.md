@@ -224,7 +224,9 @@ npm run type-check
 
 ## Contributing
 
-Open a pull request on GitHub against `main`. Read the [contributing guidelines](./CONTRIBUTING.md), the [code of conduct](./CODE_OF_CONDUCT.md) and the [security policy](./SECURITY.md). Commit messages follow Conventional Commits.
+Report bugs and request features in [GitHub issues](https://github.com/subculture-collective/backline/issues). Ask questions and share ideas in [GitHub Discussions](https://github.com/subculture-collective/backline/discussions). Send code as a pull request on GitHub against `main`.
+
+Read the [contributing guidelines](./CONTRIBUTING.md), the [code of conduct](./CODE_OF_CONDUCT.md) and the [security policy](./SECURITY.md). Commit messages follow Conventional Commits.
 
 CI runs on every pull request: backend lint, type check, Prisma validation, build, tests and PostgreSQL integration tests; frontend lint, type check, tests, build and Playwright end-to-end tests; a documentation build; dependency audits; and image, Compose and secret scans. All of them must pass before a pull request can merge.
 
