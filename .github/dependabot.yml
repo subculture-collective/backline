@@ -1,26 +1,27 @@
 version: 2
+# Ready pull requests in this repository merge themselves once Mirror CI passes,
+# and a merge to main may deploy. Every entry therefore ignores major versions,
+# groups minor and patch updates into one pull request and keeps at most two
+# pull requests open.
 updates:
-  # Backend dependencies
+  # Backend dependencies. Version updates are switched off (limit 0): the
+  # native deploy on main refuses a changed backend/package.json and applies
+  # only the reviewed modules listed in scripts/ci/prepare-runtime-patch.py,
+  # so backend dependency changes go through the native release process.
   - package-ecosystem: "npm"
     directory: "/backend"
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 0
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      development-dependencies:
-        dependency-type: "development"
+      backend-minor-and-patch:
         update-types:
           - "minor"
           - "patch"
-      production-dependencies:
-        dependency-type: "production"
-        update-types:
-          - "minor"
-          - "patch"
-    labels:
-      - "dependencies"
-      - "backend"
 
   # Frontend dependencies
   - package-ecosystem: "npm"
@@ -28,21 +29,31 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 2
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      development-dependencies:
-        dependency-type: "development"
+      frontend-minor-and-patch:
         update-types:
           - "minor"
           - "patch"
-      production-dependencies:
-        dependency-type: "production"
+
+  # Documentation site and repository tooling
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 2
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      tooling-minor-and-patch:
         update-types:
           - "minor"
           - "patch"
-    labels:
-      - "dependencies"
-      - "frontend"
 
   # GitHub Actions
   - package-ecosystem: "github-actions"
@@ -50,6 +61,12 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    labels:
-      - "dependencies"
-      - "ci/cd"
+    open-pull-requests-limit: 2
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      actions-minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
