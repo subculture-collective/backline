@@ -262,7 +262,7 @@ FEATURE_PUBLIC_API=true
 
 ### Getting Help
 
-- **[GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)** - Report bugs or issues
+- **[GitHub Issues](https://github.com/subculture-collective/backline/issues)** - Report bugs or issues
 - **[Developer Guide](/developer/)** - Technical deep-dives
 - **Community Support** - Discord server (coming soon)
 

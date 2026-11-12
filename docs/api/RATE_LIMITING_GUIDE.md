@@ -624,4 +624,4 @@ For rate limit issues or questions:
 - Check your quota: `GET /api/quota/usage`
 - Review server logs for detailed rate limit information
 - Contact support: support@spywatcher.dev
-- Open an issue: [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)
+- Open an issue: [GitHub Issues](https://github.com/subculture-collective/backline/issues)

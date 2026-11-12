@@ -696,8 +696,8 @@ print(f"Found {len(suspicions)} suspicious users")
 
 ## Support
 
-- **GitHub Issues**: https://github.com/subculture-collective/discord-spywatcher/issues
-- **Documentation**: https://github.com/subculture-collective/discord-spywatcher
+- **GitHub Issues**: https://github.com/subculture-collective/backline/issues
+- **Documentation**: https://github.com/subculture-collective/backline
 
 ## License
 

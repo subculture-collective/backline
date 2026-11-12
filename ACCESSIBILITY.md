@@ -154,7 +154,7 @@ Currently, there are no known critical accessibility issues. If you encounter an
 
 If you experience any accessibility issues or have suggestions for improvement:
 
-1. **GitHub Issues**: Open an issue at [discord-spywatcher/issues](https://github.com/subculture-collective/discord-spywatcher/issues)
+1. **GitHub Issues**: Open an issue at [backline/issues](https://github.com/subculture-collective/backline/issues)
 2. **Label**: Use the `accessibility` label
 3. **Include**:
     - Browser and version

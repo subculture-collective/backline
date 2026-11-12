@@ -29,8 +29,8 @@ Ensure you have installed:
 
 ```bash
 # Clone repository
-git clone https://github.com/subculture-collective/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/subculture-collective/backline.git
+cd backline
 
 # Install root dependencies (git hooks, etc.)
 npm install
@@ -140,7 +140,7 @@ Commit message hooks validate:
 ## Project Structure
 
 ```
-discord-spywatcher/
+backline/
 ├── backend/              # Backend services
 │   ├── src/
 │   │   ├── index.ts      # Discord bot entry

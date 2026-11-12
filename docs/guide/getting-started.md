@@ -311,7 +311,7 @@ Now that you're set up, here's what to explore next:
 ### Get Help
 - 💡 [FAQ](./faq) - Frequently asked questions
 - 🔧 [Troubleshooting](./troubleshooting) - Common issues
-- 🐛 [Report Issues](https://github.com/subculture-collective/discord-spywatcher/issues) - Found a bug?
+- 🐛 [Report Issues](https://github.com/subculture-collective/backline/issues) - Found a bug?
 
 ## Quick Reference Card
 
@@ -342,7 +342,7 @@ If you need additional assistance:
 
 1. Check the [Troubleshooting Guide](./troubleshooting)
 2. Read the [FAQ](./faq)
-3. Visit our [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)
+3. Visit our [GitHub Issues](https://github.com/subculture-collective/backline/issues)
 4. Consult the [Admin Guide](/admin/) for advanced topics
 
 Happy monitoring! 🔍

@@ -453,10 +453,10 @@ function logResponse(endpoint: string, data: any) {
 
 ### Getting Help
 
-- **Documentation**: https://github.com/subculture-collective/discord-spywatcher
+- **Documentation**: https://github.com/subculture-collective/backline
 - **API Reference**: [PUBLIC_API.md](./PUBLIC_API.md)
 - **SDK Documentation**: [SDK README](../sdk/README.md)
-- **Issues**: https://github.com/subculture-collective/discord-spywatcher/issues
+- **Issues**: https://github.com/subculture-collective/backline/issues
 
 ## Next Steps
 

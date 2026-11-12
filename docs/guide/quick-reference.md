@@ -514,8 +514,8 @@ npm run db:cleanup
 
 ### Support
 
-- **GitHub Issues**: [Report bugs](https://github.com/subculture-collective/discord-spywatcher/issues)
-- **Discussions**: [Ask questions](https://github.com/subculture-collective/discord-spywatcher/discussions)
+- **GitHub Issues**: [Report bugs](https://github.com/subculture-collective/backline/issues)
+- **Discussions**: [Ask questions](https://github.com/subculture-collective/backline/discussions)
 - **Search Docs**: Press `Ctrl+K` / `Cmd+K`
 
 ### Quick Links

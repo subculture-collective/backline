@@ -510,6 +510,6 @@ Once you have all prerequisites:
 If you're stuck on prerequisites:
 
 - **Discord Community**: Join our [Discord server](https://discord.gg/spywatcher)
-- **GitHub Discussions**: Ask questions in [Discussions](https://github.com/subculture-collective/discord-spywatcher/discussions)
+- **GitHub Discussions**: Ask questions in [Discussions](https://github.com/subculture-collective/backline/discussions)
 - **Documentation**: Check [troubleshooting guide](./common-issues)
-- **Issues**: Report bugs in [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)
+- **Issues**: Report bugs in [GitHub Issues](https://github.com/subculture-collective/backline/issues)

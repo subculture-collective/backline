@@ -14,7 +14,7 @@ On screens below 760px, navigation becomes a labeled expandable menu, the hero a
 
 The Open Graph image is included without a guessed canonical domain. Before a hosted release, set an absolute image URL and canonical URL for the chosen deployment origin, verify social preview fetching there, and review the public release separately from this local implementation.
 
-Rebuild the selected assets from Studio with `python studio/branding/library/brands/backline/build_assets.py --product-root /path/to/discord-spywatcher`. The exporter updates only Backline's generated files and source receipt. Do not edit the PNG derivatives separately.
+Rebuild the selected assets from Studio with `python studio/branding/library/brands/backline/build_assets.py --product-root /path/to/backline`. The exporter updates only Backline's generated files and source receipt. Do not edit the PNG derivatives separately.
 
 ## Local verification
 

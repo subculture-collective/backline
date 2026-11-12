@@ -53,8 +53,8 @@ Learn how to install Spywatcher from scratch and get it running on your system.
 
 2. **Clone Repository**
    ```bash
-   git clone https://github.com/subculture-collective/discord-spywatcher.git
-   cd discord-spywatcher
+   git clone https://github.com/subculture-collective/backline.git
+   cd backline
    ```
 
 3. **Configure Environment**
@@ -563,7 +563,7 @@ module.exports = {
 **Resources:**
 - [Plugin System Guide](./plugins)
 - [Plugin Development](../developer/plugin-development)
-- [Plugin Template](https://github.com/subculture-collective/discord-spywatcher/tree/main/backend/plugins/template)
+- [Plugin Template](https://github.com/subculture-collective/backline/tree/main/backend/plugins/template)
 
 ---
 
@@ -631,7 +631,7 @@ curl http://localhost:3001/api/auth/me
 **Resources:**
 - [Full Troubleshooting Guide](./troubleshooting)
 - [FAQ](./faq)
-- [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)
+- [GitHub Issues](https://github.com/subculture-collective/backline/issues)
 
 ---
 
@@ -671,7 +671,7 @@ All tutorial videos are hosted on YouTube with:
 ### Requesting New Tutorials
 
 Have an idea for a tutorial? 
-- [Submit a request on GitHub](https://github.com/subculture-collective/discord-spywatcher/issues/new?template=tutorial-request.md)
+- [Submit a request on GitHub](https://github.com/subculture-collective/backline/issues/new?template=tutorial-request.md)
 - Vote on existing tutorial requests
 - Join our community discussions
 

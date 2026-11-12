@@ -73,12 +73,12 @@ newgrp docker
 
 ```bash
 # Clone the repository
-git clone https://github.com/subculture-collective/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/subculture-collective/backline.git
+cd backline
 
 # Or if you've forked it
-git clone https://github.com/YOUR_USERNAME/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/YOUR_USERNAME/backline.git
+cd backline
 ```
 
 ### Step 3: Configure Environment
@@ -254,8 +254,8 @@ GRANT ALL PRIVILEGES ON DATABASE spywatcher TO spywatcher;
 
 ```bash
 # Clone repository
-git clone https://github.com/subculture-collective/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/subculture-collective/backline.git
+cd backline
 
 # Install root dependencies (git hooks, etc.)
 npm install
@@ -567,5 +567,5 @@ Now that your environment is set up:
 
 - **[Common Issues](./common-issues)** - Troubleshooting guide
 - **[Discord](https://discord.gg/spywatcher)** - Ask the community
-- **[GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)** - Report bugs
-- **[Discussions](https://github.com/subculture-collective/discord-spywatcher/discussions)** - Ask questions
+- **[GitHub Issues](https://github.com/subculture-collective/backline/issues)** - Report bugs
+- **[Discussions](https://github.com/subculture-collective/backline/discussions)** - Ask questions

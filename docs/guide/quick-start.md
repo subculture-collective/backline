@@ -246,6 +246,6 @@ Now that you're familiar with the basics:
 
 - **[Troubleshooting Guide](./troubleshooting)** - Solve common issues
 - **[FAQ](./faq)** - Frequently asked questions
-- **[GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)** - Report bugs
+- **[GitHub Issues](https://github.com/subculture-collective/backline/issues)** - Report bugs
 
 Happy monitoring! 🔍

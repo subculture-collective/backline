@@ -801,8 +801,8 @@ services:
 
 If you're still stuck:
 
-1. **Search existing issues**: [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)
-2. **Ask in discussions**: [GitHub Discussions](https://github.com/subculture-collective/discord-spywatcher/discussions)
+1. **Search existing issues**: [GitHub Issues](https://github.com/subculture-collective/backline/issues)
+2. **Ask in discussions**: [GitHub Discussions](https://github.com/subculture-collective/backline/discussions)
 3. **Join Discord**: Community support (link in README)
 4. **Check logs**: Always include relevant logs when asking for help
 

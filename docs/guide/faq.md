@@ -32,7 +32,7 @@ See our [pricing page](https://spywatcher.com/pricing) for detailed feature comp
 ### Is Spywatcher open source?
 
 Yes! Spywatcher is fully open source under the MIT License. You can:
-- View the source code on [GitHub](https://github.com/subculture-collective/discord-spywatcher)
+- View the source code on [GitHub](https://github.com/subculture-collective/backline)
 - Self-host your own instance
 - Contribute improvements
 - Create custom plugins
@@ -78,8 +78,8 @@ The easiest method is using Docker. You have several options:
 
 **1. Docker (Recommended)** - 5 minutes
 ```bash
-git clone https://github.com/subculture-collective/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/subculture-collective/backline.git
+cd backline
 cp .env.example .env
 # Edit .env with your Discord credentials
 docker-compose -f docker-compose.dev.yml up
@@ -663,12 +663,12 @@ For more issues, see [Troubleshooting](./troubleshooting).
 ### How do I get help?
 
 - Read the documentation
-- Check [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)
+- Check [GitHub Issues](https://github.com/subculture-collective/backline/issues)
 - Join the community Discord (coming soon)
 
 ### How do I report bugs?
 
-Open an issue on [GitHub](https://github.com/subculture-collective/discord-spywatcher/issues) with:
+Open an issue on [GitHub](https://github.com/subculture-collective/backline/issues) with:
 - Description of the bug
 - Steps to reproduce
 - Expected behavior
@@ -677,7 +677,7 @@ Open an issue on [GitHub](https://github.com/subculture-collective/discord-spywa
 
 ### How do I request features?
 
-Open a feature request on [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues) with:
+Open a feature request on [GitHub Issues](https://github.com/subculture-collective/backline/issues) with:
 - Description of the feature
 - Use case
 - Why it would be valuable
@@ -991,13 +991,13 @@ If your question isn't answered here:
    - Read related tutorials
 
 2. **Community Resources**
-   - [GitHub Discussions](https://github.com/subculture-collective/discord-spywatcher/discussions)
-   - [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)
+   - [GitHub Discussions](https://github.com/subculture-collective/backline/discussions)
+   - [GitHub Issues](https://github.com/subculture-collective/backline/issues)
    - Community Discord (coming soon)
 
 3. **Report Issues**
-   - [Bug Reports](https://github.com/subculture-collective/discord-spywatcher/issues/new?template=bug_report.md)
-   - [Feature Requests](https://github.com/subculture-collective/discord-spywatcher/issues/new?template=feature_request.md)
+   - [Bug Reports](https://github.com/subculture-collective/backline/issues/new?template=bug_report.md)
+   - [Feature Requests](https://github.com/subculture-collective/backline/issues/new?template=feature_request.md)
 
 4. **Professional Support**
    - Enterprise support available
@@ -1033,7 +1033,7 @@ See [Contributing Guide](/developer/contributing) to get started.
 - [YouTube Channel](https://youtube.com/@spywatcher) - Official videos
 
 **External Resources:**
-- [GitHub Repository](https://github.com/subculture-collective/discord-spywatcher)
+- [GitHub Repository](https://github.com/subculture-collective/backline)
 - [Discord.js Documentation](https://discord.js.org/)
 - [PostgreSQL Docs](https://www.postgresql.org/docs/)
 
@@ -1044,4 +1044,4 @@ Use the documentation search (Ctrl/Cmd + K) to find answers quickly across all d
 ---
 
 *Last updated: November 2024*  
-*Have a question not covered here? [Open an issue](https://github.com/subculture-collective/discord-spywatcher/issues) to help us improve this FAQ!*
+*Have a question not covered here? [Open an issue](https://github.com/subculture-collective/backline/issues) to help us improve this FAQ!*

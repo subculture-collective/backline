@@ -126,5 +126,5 @@ To share your plugin:
 
 For questions:
 
-- [Plugin System Documentation](../../PLUGIN_SYSTEM.md)
+- [Plugin System Documentation](../../../PLUGIN_SYSTEM.md)
 - [Gitea Issues](https://git.subcult.tv/subculture-collective/backline/issues)

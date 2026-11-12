@@ -59,7 +59,7 @@ Once you're set up, explore these features:
 
 - **[Troubleshooting](./troubleshooting)** - Common issues and solutions
 - **[FAQ](./faq)** - Frequently asked questions
-- **[GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)** - Report bugs or request features
+- **[GitHub Issues](https://github.com/subculture-collective/backline/issues)** - Report bugs or request features
 
 ## What's Next?
 

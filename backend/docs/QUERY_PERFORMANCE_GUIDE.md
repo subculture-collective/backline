@@ -429,5 +429,5 @@ Before deploying a new query:
 
 - [PostgreSQL Performance Tips](https://www.postgresql.org/docs/current/performance-tips.html)
 - [Prisma Performance Guide](https://www.prisma.io/docs/guides/performance-and-optimization)
-- [DATABASE_OPTIMIZATION.md](../../../DATABASE_OPTIMIZATION.md)
-- [QUERY_OPTIMIZATIONS.md](../../../QUERY_OPTIMIZATIONS.md)
+- [DATABASE_OPTIMIZATION.md](../../DATABASE_OPTIMIZATION.md)
+- [QUERY_OPTIMIZATIONS.md](../../QUERY_OPTIMIZATIONS.md)

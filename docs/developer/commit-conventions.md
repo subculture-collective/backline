@@ -545,7 +545,7 @@ chore(deps): update all dev dependencies
 
 ## Getting Help
 
-- **Questions?** Ask in [GitHub Discussions](https://github.com/subculture-collective/discord-spywatcher/discussions)
+- **Questions?** Ask in [GitHub Discussions](https://github.com/subculture-collective/backline/discussions)
 - **Commit rejected?** Check error message and fix format
 - **Not sure which type?** See examples above or ask maintainers
 

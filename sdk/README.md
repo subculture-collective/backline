@@ -313,7 +313,6 @@ See the [examples](./examples) directory for complete example applications:
 - [Basic Usage](./examples/basic-usage.ts) - Simple examples of common use cases
 - [Advanced Analytics](./examples/advanced-analytics.ts) - Complex analytics queries
 - [Error Handling](./examples/error-handling.ts) - Comprehensive error handling
-- [Rate Limiting](./examples/rate-limiting.ts) - Handle rate limits gracefully
 
 ## License
 
@@ -321,5 +320,5 @@ MIT
 
 ## Support
 
-- GitHub Issues: https://github.com/subculture-collective/discord-spywatcher/issues
-- Documentation: https://github.com/subculture-collective/discord-spywatcher
+- GitHub Issues: https://github.com/subculture-collective/backline/issues
+- Documentation: https://github.com/subculture-collective/backline

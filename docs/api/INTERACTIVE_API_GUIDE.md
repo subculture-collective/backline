@@ -664,8 +664,8 @@ Authorization: Bearer {{token}}
 
 ## 📞 Support
 
-- **Documentation:** [GitHub Repository](https://github.com/subculture-collective/discord-spywatcher)
-- **Issues:** [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)
+- **Documentation:** [GitHub Repository](https://github.com/subculture-collective/backline)
+- **Issues:** [GitHub Issues](https://github.com/subculture-collective/backline/issues)
 - **Email:** support@spywatcher.dev
 
 ## 📝 Additional Resources

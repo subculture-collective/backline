@@ -229,4 +229,4 @@ To import the API into Postman:
 
 For API support or questions:
 - Email: support@spywatcher.dev
-- GitHub Issues: [subculture-collective/discord-spywatcher](https://github.com/subculture-collective/discord-spywatcher/issues)
+- GitHub Issues: [subculture-collective/backline](https://github.com/subculture-collective/backline/issues)

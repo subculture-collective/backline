@@ -622,7 +622,7 @@ For complete API reference, see:
 
 For questions and support:
 
-- GitHub Issues: [discord-spywatcher/issues](https://github.com/subculture-collective/discord-spywatcher/issues)
+- GitHub Issues: [backline/issues](https://github.com/subculture-collective/backline/issues)
 - Documentation: [README.md](./README.md)
 
 ## Contributing

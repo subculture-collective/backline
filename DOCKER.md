@@ -13,8 +13,8 @@ This guide explains how to run the Discord Spywatcher application using Docker a
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/subculture-collective/discord-spywatcher.git
-    cd discord-spywatcher
+    git clone https://github.com/subculture-collective/backline.git
+    cd backline
     ```
 
 2. **Create environment file**

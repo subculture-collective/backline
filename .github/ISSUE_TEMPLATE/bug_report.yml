@@ -17,7 +17,7 @@ body:
       options:
         - label: I have searched existing issues to ensure this bug hasn't already been reported
           required: true
-        - label: I have read the [documentation](https://github.com/subculture-collective/discord-spywatcher/blob/main/README.md)
+        - label: I have read the [documentation](https://github.com/subculture-collective/backline/blob/main/README.md)
           required: true
         - label: I am using the latest version of the software
           required: false

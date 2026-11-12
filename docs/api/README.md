@@ -524,7 +524,7 @@ http GET http://localhost:3001/api/auth/me \
 - [Main Documentation](../)
 
 ### Get Help
-- **GitHub Issues:** [Report bugs or request features](https://github.com/subculture-collective/discord-spywatcher/issues)
+- **GitHub Issues:** [Report bugs or request features](https://github.com/subculture-collective/backline/issues)
 - **Email:** support@spywatcher.dev
 - **Documentation:** This repository
 

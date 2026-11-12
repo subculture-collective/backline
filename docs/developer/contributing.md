@@ -66,11 +66,11 @@ Ready to code? Great!
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/YOUR_USERNAME/backline.git
+cd backline
 
 # Add upstream remote
-git remote add upstream https://github.com/subculture-collective/discord-spywatcher.git
+git remote add upstream https://github.com/subculture-collective/backline.git
 
 # Install dependencies
 npm install

@@ -391,7 +391,7 @@ console.log(`Used ${usage.used} of ${usage.limit} requests`);
 
 Need help with the API?
 
-- **[GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues)** - Report bugs or issues
+- **[GitHub Issues](https://github.com/subculture-collective/backline/issues)** - Report bugs or issues
 - **[Developer Guide](/developer/)** - Technical documentation
 - **[Stack Overflow](https://stackoverflow.com/questions/tagged/spywatcher)** - Community Q&A
 

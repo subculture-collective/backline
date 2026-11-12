@@ -600,5 +600,5 @@ The API requests these Discord scopes:
 If you encounter authentication issues:
 1. Check the [troubleshooting section](#error-handling)
 2. Review server logs for detailed error messages
-3. Open an issue on [GitHub](https://github.com/subculture-collective/discord-spywatcher/issues)
+3. Open an issue on [GitHub](https://github.com/subculture-collective/backline/issues)
 4. Contact support at support@spywatcher.dev

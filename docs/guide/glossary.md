@@ -358,7 +358,7 @@ Write-Ahead Logging
 - [Developer Guide](/developer/) - Development documentation
 
 ::: tip Missing a Term?
-If you encounter a term not listed here, please [open an issue](https://github.com/subculture-collective/discord-spywatcher/issues) to help us improve this glossary.
+If you encounter a term not listed here, please [open an issue](https://github.com/subculture-collective/backline/issues) to help us improve this glossary.
 :::
 
 *Last updated: November 2024*

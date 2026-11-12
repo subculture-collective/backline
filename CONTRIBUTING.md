@@ -35,12 +35,12 @@ If this is your first time contributing to open source, welcome! Here are some r
 1. **Fork the repository** - Click the "Fork" button at the top right of the repository page
 2. **Clone your fork**:
     ```bash
-    git clone https://github.com/YOUR_USERNAME/discord-spywatcher.git
-    cd discord-spywatcher
+    git clone https://github.com/YOUR_USERNAME/backline.git
+    cd backline
     ```
 3. **Add upstream remote**:
     ```bash
-    git remote add upstream https://github.com/subculture-collective/discord-spywatcher.git
+    git remote add upstream https://github.com/subculture-collective/backline.git
     ```
 4. **Create a new branch**:
     ```bash
@@ -91,7 +91,7 @@ Use the [documentation template](.github/ISSUE_TEMPLATE/documentation.yml) to su
 
 Ready to contribute code? Great!
 
-- Check the [issue tracker](https://github.com/subculture-collective/discord-spywatcher/issues) for open issues
+- Check the [issue tracker](https://github.com/subculture-collective/backline/issues) for open issues
 - Look for issues labeled `good first issue` or `help wanted`
 - Comment on an issue to let others know you're working on it
 - Follow the development workflow below
@@ -569,7 +569,7 @@ We use labels to categorize issues:
 Need help with something? Here are the best ways to get support:
 
 - **Documentation** - Check the [README](./README.md) and [docs](./docs/) first
-- **Discussions** - Use [GitHub Discussions](https://github.com/subculture-collective/discord-spywatcher/discussions) for questions
+- **Discussions** - Use [GitHub Discussions](https://github.com/subculture-collective/backline/discussions) for questions
 - **Issues** - Create an issue if you've found a bug or want to suggest a feature
 - **Pull Request Comments** - Ask questions directly on relevant PRs
 
@@ -583,7 +583,7 @@ We value all contributions! Contributors are recognized in:
 
 ## Need Help?
 
-- Check existing [issues](https://github.com/subculture-collective/discord-spywatcher/issues) and [discussions](https://github.com/subculture-collective/discord-spywatcher/discussions)
+- Check existing [issues](https://github.com/subculture-collective/backline/issues) and [discussions](https://github.com/subculture-collective/backline/discussions)
 - Read the [documentation](./README.md)
 - Ask questions in pull request comments
 - Reach out to maintainers

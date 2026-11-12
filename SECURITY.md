@@ -83,7 +83,7 @@ Strict CORS policy:
 
 If you discover a security vulnerability, please report it responsibly:
 
-1. **Preferred Method**: Create a [private security advisory](https://github.com/subculture-collective/discord-spywatcher/security/advisories/new) on GitHub
+1. **Preferred Method**: Create a [private security advisory](https://github.com/subculture-collective/backline/security/advisories/new) on GitHub
 2. **Alternative**: Contact the maintainers directly through GitHub
 
 **Please do NOT create public issues for security vulnerabilities.**

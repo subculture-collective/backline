@@ -101,7 +101,7 @@ When adding annotations:
 
 ```bash
 # Start Spywatcher with demo data
-cd /path/to/discord-spywatcher
+cd /path/to/backline
 docker-compose -f docker-compose.dev.yml up
 
 # Or with seed data

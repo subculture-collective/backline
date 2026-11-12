@@ -344,5 +344,5 @@ Track review quality:
 ## Questions?
 
 - Ask in PR comments
-- Join [GitHub Discussions](https://github.com/subculture-collective/discord-spywatcher/discussions)
+- Join [GitHub Discussions](https://github.com/subculture-collective/backline/discussions)
 - Reach out to maintainers

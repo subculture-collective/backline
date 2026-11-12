@@ -608,7 +608,7 @@ npm run db:migrate
 
 For issues or questions:
 
-- Check the [main README](../README.md)
-- Review [MIGRATION.md](../MIGRATION.md)
-- Review [scripts/README.md](../scripts/README.md)
+- Check the [main README](./README.md)
+- Review [MIGRATION.md](./MIGRATION.md)
+- Review [scripts/README.md](./scripts/README.md)
 - Open an issue on GitHub

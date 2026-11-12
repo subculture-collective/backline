@@ -829,6 +829,6 @@ model WhitelistedIP {
 
 For issues or questions about rate limiting and DDoS protection, please refer to:
 
-- [SECURITY.md](../SECURITY.md) - Security policies
-- [GitHub Issues](https://github.com/subculture-collective/discord-spywatcher/issues) - Report issues
-- [Contributing Guide](../CONTRIBUTING.md) - Contribution guidelines
+- [SECURITY.md](./SECURITY.md) - Security policies
+- [GitHub Issues](https://github.com/subculture-collective/backline/issues) - Report issues
+- [Contributing Guide](./CONTRIBUTING.md) - Contribution guidelines

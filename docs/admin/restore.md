@@ -281,8 +281,8 @@ terraform apply -var-file="environments/production/terraform.tfvars"
 **3. Restore Application:**
 ```bash
 # Clone repository
-git clone https://github.com/subculture-collective/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/subculture-collective/backline.git
+cd backline
 
 # Configure environment
 cp .env.example .env
@@ -575,5 +575,5 @@ echo "✅ Validation complete!"
 ---
 
 ::: tip Need Help?
-For additional support, check the [troubleshooting guide](/guide/troubleshooting) or open an issue on [GitHub](https://github.com/subculture-collective/discord-spywatcher/issues).
+For additional support, check the [troubleshooting guide](/guide/troubleshooting) or open an issue on [GitHub](https://github.com/subculture-collective/backline/issues).
 :::

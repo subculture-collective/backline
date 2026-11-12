@@ -17,11 +17,11 @@ This guide explains how to create, review, and merge pull requests for Spywatche
 # Fork the repository on GitHub (click "Fork" button)
 
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/YOUR_USERNAME/backline.git
+cd backline
 
 # Add upstream remote
-git remote add upstream https://github.com/subculture-collective/discord-spywatcher.git
+git remote add upstream https://github.com/subculture-collective/backline.git
 
 # Verify remotes
 git remote -v
@@ -633,6 +633,6 @@ git push origin feature/your-feature
 
 ## Getting Help
 
-- **Stuck?** Ask in [GitHub Discussions](https://github.com/subculture-collective/discord-spywatcher/discussions)
-- **Bug in PR process?** Open an [issue](https://github.com/subculture-collective/discord-spywatcher/issues)
+- **Stuck?** Ask in [GitHub Discussions](https://github.com/subculture-collective/backline/discussions)
+- **Bug in PR process?** Open an [issue](https://github.com/subculture-collective/backline/issues)
 - **Need review?** Tag maintainers in PR comments

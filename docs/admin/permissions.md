@@ -828,5 +828,5 @@ Generate permission reports:
 ---
 
 ::: tip Need Help?
-For additional support, check the [troubleshooting guide](/guide/troubleshooting) or open an issue on [GitHub](https://github.com/subculture-collective/discord-spywatcher/issues).
+For additional support, check the [troubleshooting guide](/guide/troubleshooting) or open an issue on [GitHub](https://github.com/subculture-collective/backline/issues).
 :::

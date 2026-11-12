@@ -17,7 +17,7 @@ body:
       options:
         - label: I have searched existing issues and discussions to ensure this hasn't been suggested before
           required: true
-        - label: I have read the [documentation](https://github.com/subculture-collective/discord-spywatcher/blob/main/README.md)
+        - label: I have read the [documentation](https://github.com/subculture-collective/backline/blob/main/README.md)
           required: true
   
   - type: textarea

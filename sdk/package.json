@@ -41,13 +41,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/subculture-collective/discord-spywatcher.git",
+    "url": "https://github.com/subculture-collective/backline.git",
     "directory": "sdk"
   },
   "bugs": {
-    "url": "https://github.com/subculture-collective/discord-spywatcher/issues"
+    "url": "https://github.com/subculture-collective/backline/issues"
   },
-  "homepage": "https://github.com/subculture-collective/discord-spywatcher#readme",
+  "homepage": "https://github.com/subculture-collective/backline#readme",
   "peerDependencies": {
     "typescript": ">=4.5.0"
   },

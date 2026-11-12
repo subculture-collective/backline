@@ -25,8 +25,8 @@ The easiest way to run Spywatcher is using Docker Compose:
 #### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/subculture-collective/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/subculture-collective/backline.git
+cd backline
 ```
 
 #### Step 2: Configure Environment
@@ -94,8 +94,8 @@ For more control over the installation:
 #### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/subculture-collective/discord-spywatcher.git
-cd discord-spywatcher
+git clone https://github.com/subculture-collective/backline.git
+cd backline
 ```
 
 #### Step 2: Install Backend Dependencies
