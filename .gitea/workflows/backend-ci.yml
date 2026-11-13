@@ -109,6 +109,7 @@ jobs:
               env:
                   SOURCE_REVISION: ${{ github.sha }}
                   DEPLOY_KEY: ${{ secrets.HOMELAB_NATIVE_DEPLOY_KEY }}
+                  DEPLOY_TARGET: ${{ secrets.DEPLOY_TARGET }}
                   KNOWN_HOSTS: ${{ secrets.HOMELAB_NATIVE_KNOWN_HOSTS }}
               run: |
                   umask 077
@@ -116,19 +117,20 @@ jobs:
                   ssh_directory="$(mktemp -d)"
                   trap 'rm -rf "$ssh_directory"' EXIT
                   printf '%s\n' "$DEPLOY_KEY" > "$ssh_directory/key"
+                  test -n "$DEPLOY_TARGET"
                   printf '%s\n' "$KNOWN_HOSTS" > "$ssh_directory/known_hosts"
                   options=(-i "$ssh_directory/key" -o BatchMode=yes -o IdentitiesOnly=yes \
                     -o StrictHostKeyChecking=yes -o "UserKnownHostsFile=$ssh_directory/known_hosts")
                   # The forced command accepts fixed verbs and this validated client-side SHA.
                   # shellcheck disable=SC2029
-                  accepted="$(ssh "${options[@]}" onnwee@10.0.0.57 "artifact $SOURCE_REVISION runtime")"
+                  accepted="$(ssh "${options[@]}" "$DEPLOY_TARGET" "artifact $SOURCE_REVISION runtime")"
                   if ! python3 -c 'import json,sys; sys.exit(0 if json.loads(sys.argv[1])["available"] else 1)' "$accepted"; then
                     # shellcheck disable=SC2029
                     docker save "fleet-deploy/backline-native/runtime:$SOURCE_REVISION" | \
-                      ssh "${options[@]}" onnwee@10.0.0.57 "receive $SOURCE_REVISION runtime"
+                      ssh "${options[@]}" "$DEPLOY_TARGET" "receive $SOURCE_REVISION runtime"
                   fi
                   # shellcheck disable=SC2029
-                  ssh "${options[@]}" onnwee@10.0.0.57 "deploy $SOURCE_REVISION"
+                  ssh "${options[@]}" "$DEPLOY_TARGET" "deploy $SOURCE_REVISION"
 
     dashboard:
         name: Dashboard image
@@ -158,6 +160,7 @@ jobs:
               env:
                   SOURCE_REVISION: ${{ github.sha }}
                   DEPLOY_KEY: ${{ secrets.HOMELAB_WEB_DEPLOY_KEY }}
+                  DEPLOY_TARGET: ${{ secrets.DEPLOY_TARGET }}
                   KNOWN_HOSTS: ${{ secrets.HOMELAB_WEB_KNOWN_HOSTS }}
               run: |
                   umask 077
@@ -165,20 +168,21 @@ jobs:
                   ssh_directory="$(mktemp -d)"
                   trap 'rm -rf "$ssh_directory"' EXIT
                   printf '%s\n' "$DEPLOY_KEY" > "$ssh_directory/key"
+                  test -n "$DEPLOY_TARGET"
                   printf '%s\n' "$KNOWN_HOSTS" > "$ssh_directory/known_hosts"
                   options=(-i "$ssh_directory/key" -o BatchMode=yes -o IdentitiesOnly=yes \
                     -o StrictHostKeyChecking=yes -o "UserKnownHostsFile=$ssh_directory/known_hosts")
                   # Fixed verbs and the validated SHA expand on the client.
                   # shellcheck disable=SC2029
-                  accepted="$(ssh "${options[@]}" onnwee@10.0.0.57 "artifact $SOURCE_REVISION web")"
+                  accepted="$(ssh "${options[@]}" "$DEPLOY_TARGET" "artifact $SOURCE_REVISION web")"
                   if ! python3 -c 'import json,sys; sys.exit(0 if json.loads(sys.argv[1])["available"] else 1)' "$accepted"; then
                     # shellcheck disable=SC2029
                     docker save "fleet-deploy/backline-web/web:$SOURCE_REVISION" | \
-                      ssh "${options[@]}" onnwee@10.0.0.57 "receive $SOURCE_REVISION web"
+                      ssh "${options[@]}" "$DEPLOY_TARGET" "receive $SOURCE_REVISION web"
                   fi
                   ready=0
                   for attempt in $(seq 1 60); do
-                    if status="$(ssh "${options[@]}" onnwee@10.0.0.57 status)"; then
+                    if status="$(ssh "${options[@]}" "$DEPLOY_TARGET" status)"; then
                       if python3 -c 'import json,sys; sys.exit(0 if json.loads(sys.argv[1])["compose_ready"] else 1)' "$status"; then
                         ready=1
                         break
@@ -189,7 +193,7 @@ jobs:
                   done
                   test "$ready" = 1
                   # shellcheck disable=SC2029
-                  ssh "${options[@]}" onnwee@10.0.0.57 "deploy $SOURCE_REVISION"
+                  ssh "${options[@]}" "$DEPLOY_TARGET" "deploy $SOURCE_REVISION"
 
     database-integration:
         name: PostgreSQL migrations and integration suite
