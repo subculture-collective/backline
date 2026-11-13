@@ -48,7 +48,7 @@ function AppContent() {
             {/* Skip to main content link for keyboard navigation */}
             <a
                 href="#main-content"
-                className="sr-only focus:not-sr-only fixed top-4 left-4 z-50 bg-bl-action text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-bl-accent focus:ring-offset-2"
+                className="sr-only focus:not-sr-only fixed top-4 left-4 z-50 bg-bl-action text-bl-on-action px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-bl-accent focus:ring-offset-2"
             >
                 {t('navigation.skipToContent')}
             </a>

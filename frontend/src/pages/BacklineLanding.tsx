@@ -1,394 +1,372 @@
-import { ArrowDown, ArrowUpRight, Check, Menu, X } from 'lucide-react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { Icon, Mark, type IconName } from '../components/brand/RoadCase';
 import { useTheme } from '../contexts/ThemeContext';
 
 import './backline-landing.css';
 
 const source = 'https://git.subcult.tv/subculture-collective/backline';
-const tools = [
+
+const groups: {
+    number: string;
+    name: string;
+    icon: IconName;
+    title: string;
+    text: string;
+    modules: string[];
+    doc?: string;
+}[] = [
     {
         number: '01',
-        name: 'A good first hello.',
-        label: 'WELCOME & ROLES',
-        text: 'Choose a welcome channel, set up rules acknowledgment, and let members choose from the roles you make available.',
-        doc: 'onboarding',
-        tags: [
-            'Welcome messages',
-            'Rules acknowledgment',
-            'Self-service roles',
+        name: 'Welcome',
+        icon: 'welcome',
+        title: 'A good first hello',
+        text: 'Greet new members, gate the rules, and let people pick the roles you make available.',
+        modules: [
+            'Onboarding',
+            'Self-assigned roles',
+            'Birthdays',
+            'AFK status',
+            'Polls',
+            'Suggestions',
+            'Community reports',
         ],
+        doc: 'onboarding',
     },
     {
         number: '02',
-        name: 'Keep the context.',
-        label: 'MODERATION',
-        text: 'Warnings, timeouts, and other moderation actions belong in a case history, with a reason and the staff member who took the action.',
+        name: 'Safety',
+        icon: 'safety',
+        title: 'Keep the context',
+        text: 'Every warning, timeout and ban lands in a case with a reason and the staff member who acted. Members get a private room to ask for help.',
+        modules: [
+            'Moderation and cases',
+            'Anti-spam',
+            'Audit log',
+            'Private tickets',
+            'Activity reports',
+        ],
         doc: 'moderation',
-        tags: ['Case history', 'Permission checks', 'Audit records'],
     },
     {
         number: '03',
-        name: 'Make room to listen.',
-        label: 'PRIVATE SUPPORT',
-        text: 'Give members a place to ask for help. Staff can claim a ticket, bring in the right people, and close the conversation when it is resolved.',
-        doc: 'tickets',
-        tags: ['Ticket panels', 'Staff assignment', 'Retention controls'],
+        name: 'Engage',
+        icon: 'engage',
+        title: 'A reason to stay',
+        text: 'Levels, giveaways and audio for the nights the server is busy.',
+        modules: ['Leveling', 'Economy', 'Giveaways', 'Entertainment', 'Audio'],
+    },
+    {
+        number: '04',
+        name: 'Automate',
+        icon: 'automate',
+        title: 'Run it while you sleep',
+        text: 'Scheduled jobs, custom commands and feeds, plus recovery snapshots you confirm before anything is restored.',
+        modules: [
+            'Scheduled utilities',
+            'Custom commands',
+            'Twitch, YouTube, RSS',
+            'Workflows',
+            'Recovery snapshots',
+        ],
+        doc: 'selective-restore',
+    },
+    {
+        number: '05',
+        name: 'Operator',
+        icon: 'operator',
+        title: 'Bring your own',
+        text: 'An open slot for plugins installed by whoever runs the bot. They stay muted until a server brings them up.',
+        modules: ['Operator plugins'],
     },
 ];
 
+const strips: { number: string; name: string; icon: IconName; up: boolean }[] =
+    [
+        { number: '01', name: 'Welcome', icon: 'welcome', up: true },
+        { number: '02', name: 'Safety', icon: 'safety', up: true },
+        { number: '03', name: 'Engage', icon: 'engage', up: true },
+        { number: '04', name: 'Automate', icon: 'automate', up: false },
+        { number: '05', name: 'Operator', icon: 'operator', up: false },
+    ];
+
+function State({ up }: { up: boolean }) {
+    return (
+        <span className={up ? 'lp-state is-live' : 'lp-state'}>
+            <span className="lp-led" aria-hidden="true" />
+            <span className="lp-state-word">{up ? 'Live' : 'Muted'}</span>
+        </span>
+    );
+}
+
 export default function BacklineLanding() {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const { effectiveTheme } = useTheme();
-    const mark = effectiveTheme === 'dark' ? 'mark-light' : 'mark';
-    const inverseMark = effectiveTheme === 'dark' ? 'mark' : 'mark-light';
+    const { effectiveTheme, setTheme } = useTheme();
 
     return (
         <div className="backline">
             <header className="lp-header">
                 <Link to="/" className="lp-brand" aria-label="Backline home">
-                    <img
-                        src="/brand/backline/lockup.svg"
-                        alt="Backline"
-                        width="610"
-                        height="152"
-                    />
+                    <Mark className="lp-mark" />
+                    <span>Backline</span>
                 </Link>
-                <button
-                    className="lp-menu-button"
-                    type="button"
-                    aria-expanded={menuOpen}
-                    aria-controls="bl-navigation"
-                    aria-label={
-                        menuOpen ? 'Close navigation' : 'Open navigation'
-                    }
-                    onClick={() => setMenuOpen(!menuOpen)}
-                >
-                    {menuOpen ? (
-                        <X aria-hidden="true" />
-                    ) : (
-                        <Menu aria-hidden="true" />
-                    )}
-                </button>
-                <nav
-                    id="bl-navigation"
-                    className={menuOpen ? 'lp-nav is-open' : 'lp-nav'}
-                    aria-label="Main navigation"
-                >
-                    <a href="#tools" onClick={() => setMenuOpen(false)}>
-                        The tools
-                    </a>
-                    <a href="#how" onClick={() => setMenuOpen(false)}>
-                        How it works
-                    </a>
-                    <Link className="lp-nav-login" to="/login">
-                        Pilot sign in{' '}
-                        <ArrowUpRight size={18} aria-hidden="true" />
-                    </Link>
+                <nav className="lp-nav" aria-label="Main navigation">
+                    <a href="#modules">The modules</a>
+                    <a href="#soundcheck">Soundcheck</a>
+                    <a href="#pilot">Pilot</a>
                 </nav>
+                <div className="lp-header-end">
+                    <div className="lp-switch" role="group" aria-label="Theme">
+                        <button
+                            type="button"
+                            aria-pressed={effectiveTheme === 'dark'}
+                            onClick={() => setTheme('dark')}
+                        >
+                            <Icon name="stage" size={16} />
+                            <span className="lp-switch-word">Stage</span>
+                        </button>
+                        <button
+                            type="button"
+                            aria-pressed={effectiveTheme === 'light'}
+                            onClick={() => setTheme('light')}
+                        >
+                            <Icon name="loadin" size={16} />
+                            <span className="lp-switch-word">Load-in</span>
+                        </button>
+                    </div>
+                    <Link className="lp-button lp-button-secondary" to="/login">
+                        Sign in
+                    </Link>
+                </div>
             </header>
 
             <main id="main-content">
                 <section className="lp-hero" aria-labelledby="bl-title">
-                    <div className="lp-hero-copy">
-                        <p className="lp-eyebrow">
-                            <span className="lp-square" /> A SUBCULT TOOL /
-                            DISCORD COMMUNITIES
+                    <div>
+                        <span className="lp-tape">Discord bot + dashboard</span>
+                        <h1 id="bl-title">The gear behind your community.</h1>
+                        <p className="lp-lead">
+                            Welcome new members, keep a record of every
+                            moderation call, and give people a private room to
+                            ask for help. 23 modules, each one muted until you
+                            bring it up.
                         </p>
-                        <h1 id="bl-title">
-                            KEEP YOUR
-                            <br />
-                            PEOPLE
-                            <br />
-                            <span>TOGETHER.</span>
-                        </h1>
-                        <p className="lp-hero-description">
-                            The tools behind your community. Welcome people,
-                            support your members, and give your moderation team
-                            the context to do its work.
-                        </p>
-                        <div className="lp-hero-actions">
-                            <a className="lp-cta" href="#tools">
-                                Explore the tools{' '}
-                                <ArrowDown size={20} aria-hidden="true" />
-                            </a>
-                            <a className="lp-text-link" href="#pilot">
-                                Meet the private pilot{' '}
-                                <ArrowUpRight size={18} aria-hidden="true" />
+                        <div className="lp-actions">
+                            <Link
+                                className="lp-button lp-button-primary"
+                                to="/login"
+                            >
+                                Pilot sign in <Icon name="arrow" />
+                            </Link>
+                            <a
+                                className="lp-button lp-button-secondary"
+                                href="#modules"
+                            >
+                                See the modules
                             </a>
                         </div>
+                        <p className="lp-note">
+                            Private pilot with the SUBCULT community. Public
+                            installation is not open yet.
+                        </p>
                     </div>
-                    <div
-                        className="lp-workflow"
-                        aria-label="Illustrative Backline workflows with fictional members and records"
+
+                    <figure
+                        className="lp-rack lp-corners"
+                        aria-label="Example server with three of five module groups live. Fictional sample, not a live server."
                     >
-                        <div className="lp-workflow-label">
-                            <span>BEHIND THE SCENES</span>
-                            <span>ILLUSTRATIVE WORKFLOWS</span>
+                        <div className="lp-rack-head">
+                            <span className="lp-eyebrow">
+                                Example server · fictional
+                            </span>
+                            <span className="lp-state is-live">
+                                <span className="lp-led" aria-hidden="true" />3
+                                of 5 groups live
+                            </span>
                         </div>
-                        <div className="lp-workflow-board">
-                            <div className="lp-board-top">
-                                <img
-                                    src="/brand/backline/mark.svg"
-                                    alt=""
-                                    width="32"
-                                    height="32"
-                                />
-                                <span>YOUR COMMUNITY</span>
-                                <span className="lp-board-number">001</span>
-                            </div>
-                            <div className="lp-example bl-example-welcome">
-                                <div className="lp-example-heading">
-                                    <span className="lp-step-label">
-                                        01 / WELCOME
+                        <div className="lp-strips" aria-hidden="true">
+                            {strips.map((strip) => (
+                                <div
+                                    key={strip.number}
+                                    className={
+                                        strip.up ? 'lp-strip is-up' : 'lp-strip'
+                                    }
+                                >
+                                    <Icon
+                                        name={strip.icon}
+                                        className="lp-strip-icon"
+                                    />
+                                    <span className="lp-strip-num">
+                                        {strip.number}
                                     </span>
-                                    <span className="lp-example-symbol">↳</span>
-                                </div>
-                                <h2>
-                                    YOU’RE IN.
-                                    <br />
-                                    MAKE YOURSELF AT HOME.
-                                </h2>
-                                <p>
-                                    A welcome message. A clear set of rules. A
-                                    place to start.
-                                </p>
-                                <span className="lp-example-chip">
-                                    <Check size={14} aria-hidden="true" /> Rules
-                                    acknowledged
-                                </span>
-                            </div>
-                            <div className="lp-example bl-example-case">
-                                <div className="lp-example-heading">
-                                    <span className="lp-step-label">
-                                        02 / MODERATION
+                                    <span className="lp-track">
+                                        <i />
                                     </span>
-                                    <span className="lp-small-label">
-                                        CASE #014
+                                    <span className="lp-strip-name">
+                                        {strip.name}
                                     </span>
+                                    <State up={strip.up} />
                                 </div>
-                                <div className="lp-case-line">
-                                    <strong>ACTION</strong>
-                                    <span>Warning</span>
-                                </div>
-                                <div className="lp-case-line">
-                                    <strong>REASON</strong>
-                                    <span>Repeated off-topic posts</span>
-                                </div>
-                                <div className="lp-case-line">
-                                    <strong>STAFF</strong>
-                                    <span>Sam / moderator</span>
-                                </div>
-                            </div>
-                            <div className="lp-example bl-example-ticket">
-                                <div className="lp-example-heading">
-                                    <span className="lp-step-label">
-                                        03 / SUPPORT
-                                    </span>
-                                    <span className="lp-small-label">
-                                        TICKET #008
-                                    </span>
-                                </div>
-                                <h2>“A LITTLE HELP?”</h2>
-                                <div className="lp-ticket-bottom">
-                                    <span>Alex / member</span>
-                                    <span className="lp-example-chip">
-                                        Claimed by staff
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="lp-board-bottom">
-                                ONE SERVER. THE MODULES YOU CHOOSE.
-                            </div>
+                            ))}
                         </div>
-                        <p className="lp-sample-note">
-                            Sample content, not a live server or dashboard
-                            capture.
-                        </p>
-                    </div>
+                        <ul className="lp-key" aria-hidden="true">
+                            {strips.map((strip) => (
+                                <li key={strip.number}>
+                                    <b>{strip.number}</b>
+                                    {strip.name}
+                                    <State up={strip.up} />
+                                </li>
+                            ))}
+                        </ul>
+                        <figcaption className="lp-rack-foot">
+                            <span>
+                                <b>#142</b> · timeout 1h · marlo_k
+                            </span>
+                            <span className="lp-state is-live">
+                                <span className="lp-led" aria-hidden="true" />
+                                Delivered
+                            </span>
+                        </figcaption>
+                    </figure>
                 </section>
 
-                <div className="lp-strip" aria-label="Core modules">
-                    <span>WELCOME</span>
-                    <span aria-hidden="true">✳</span>
-                    <span>MODERATE</span>
-                    <span aria-hidden="true">✳</span>
-                    <span>SUPPORT</span>
-                    <span aria-hidden="true">✳</span>
-                    <span>BACK YOUR PEOPLE</span>
-                </div>
-
                 <section
-                    id="tools"
-                    className="lp-tools bl-section"
-                    aria-labelledby="bl-tools-title"
+                    id="modules"
+                    className="lp-section"
+                    aria-labelledby="bl-modules-title"
                 >
-                    <div className="lp-section-heading">
-                        <p className="lp-eyebrow">THE TOOLKIT / 01—03</p>
-                        <h2 id="bl-tools-title">
-                            A community takes work.
-                            <br />
-                            Give that work a home.
-                        </h2>
+                    <div className="lp-section-head">
+                        <h2 id="bl-modules-title">What's in the case</h2>
                         <p>
-                            Start with the jobs your server needs. Each module
-                            is configured for that server and starts disabled
-                            until you choose to enable it.
+                            Five groups, 23 modules. Configure each one from the
+                            dashboard or with /settings in Discord.
                         </p>
                     </div>
-                    <div className="lp-tool-list">
-                        {tools.map((tool) => (
-                            <article className="lp-tool" key={tool.number}>
-                                <span
-                                    className="lp-tool-number"
-                                    aria-hidden="true"
-                                >
-                                    {tool.number}
-                                </span>
-                                <div>
-                                    <p className="lp-eyebrow">{tool.label}</p>
-                                    <h3>{tool.name}</h3>
-                                    <p className="lp-tool-description">
-                                        {tool.text}
-                                    </p>
-                                    <ul
-                                        className="lp-tags"
-                                        aria-label={`${tool.label} capabilities`}
-                                    >
-                                        {tool.tags.map((tag) => (
-                                            <li key={tag}>{tag}</li>
-                                        ))}
-                                    </ul>
+                    <div className="lp-rows">
+                        {groups.map((group) => (
+                            <article
+                                key={group.number}
+                                className={
+                                    group.number === '05'
+                                        ? 'lp-row is-slot'
+                                        : 'lp-row'
+                                }
+                                aria-labelledby={`bl-group-${group.number}`}
+                            >
+                                <div className="lp-row-id">
+                                    <span className="lp-tape">
+                                        {group.number} · {group.name}
+                                    </span>
+                                    <Icon name={group.icon} size={24} />
                                 </div>
-                                <a
-                                    className="lp-doc-link"
-                                    href={`${source}/src/branch/main/docs/developer/${tool.doc}.md`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    aria-label={`Read ${tool.label.toLowerCase()} documentation`}
-                                >
-                                    Read the details{' '}
-                                    <ArrowUpRight
-                                        size={20}
-                                        aria-hidden="true"
-                                    />
-                                </a>
+                                <div>
+                                    <h3 id={`bl-group-${group.number}`}>
+                                        {group.title}
+                                    </h3>
+                                    <p>{group.text}</p>
+                                    {group.doc && (
+                                        <a
+                                            className="lp-doc"
+                                            href={`${source}/src/branch/main/docs/developer/${group.doc}.md`}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            Read the details
+                                            <span className="sr-only">
+                                                {' '}
+                                                about {group.name.toLowerCase()}
+                                            </span>
+                                            <Icon name="external" size={16} />
+                                        </a>
+                                    )}
+                                </div>
+                                <ul aria-label={`${group.name} modules`}>
+                                    {group.modules.map((module) => (
+                                        <li key={module}>{module}</li>
+                                    ))}
+                                </ul>
                             </article>
                         ))}
                     </div>
                 </section>
 
                 <section
-                    id="how"
-                    className="lp-how bl-section"
-                    aria-labelledby="bl-how-title"
+                    id="soundcheck"
+                    className="lp-section"
+                    aria-labelledby="bl-soundcheck-title"
                 >
-                    <div className="lp-section-heading">
-                        <p className="lp-eyebrow">YOUR SERVER / YOUR SETUP</p>
-                        <h2 id="bl-how-title">
-                            Choose the job.
-                            <br />
-                            Set the boundaries.
-                        </h2>
+                    <div className="lp-section-head">
+                        <h2 id="bl-soundcheck-title">Soundcheck</h2>
+                        <p>Three steps from sign-in to a working server.</p>
                     </div>
                     <ol className="lp-steps">
                         <li>
-                            <span className="lp-step-index">01</span>
-                            <h3>Pick your server.</h3>
+                            <span className="lp-step-num">01</span>
+                            <h3>Sign in</h3>
                             <p>
-                                Sign in with Discord. The dashboard checks your
-                                access to the server you want to configure.
+                                Use Discord. You see the servers where you hold
+                                Manage Server.
                             </p>
                         </li>
                         <li>
-                            <span className="lp-step-index">02</span>
-                            <h3>Set up the module.</h3>
+                            <span className="lp-step-num">02</span>
+                            <h3>Bring modules up</h3>
                             <p>
-                                Choose channels, staff roles, and the settings
-                                that fit your community. Review the permissions
-                                it needs.
+                                Everything starts muted. Switch on what your
+                                server needs and set the channels and staff
+                                roles it uses.
                             </p>
                         </li>
                         <li>
-                            <span className="lp-step-index">03</span>
-                            <h3>Bring it into Discord.</h3>
+                            <span className="lp-step-num">03</span>
+                            <h3>Check the log</h3>
                             <p>
-                                Use commands and member-facing panels in the
-                                server. Return to the dashboard for setup and
-                                moderation records.
+                                Moderation and settings changes are jobs with a
+                                state you can read back.
                             </p>
                         </li>
                     </ol>
-                    <div className="lp-principle">
-                        <img
-                            src={`/brand/backline/${mark}.svg`}
-                            alt=""
-                            width="72"
-                            height="72"
-                        />
-                        <p>
-                            Good tools respect the people using them.
-                            <br />
-                            <strong>
-                                Clear permissions. Deliberate setup. A record of
-                                the action.
-                            </strong>
-                        </p>
-                    </div>
                 </section>
 
                 <section
                     id="pilot"
-                    className="lp-pilot bl-section"
+                    className="lp-section"
                     aria-labelledby="bl-pilot-title"
                 >
-                    <div className="lp-pilot-copy">
-                        <p className="lp-eyebrow">CURRENTLY / PRIVATE PILOT</p>
-                        <h2 id="bl-pilot-title">
-                            BUILT WITH
-                            <br />A REAL COMMUNITY.
-                        </h2>
-                        <p>
-                            Backline is being tested with SUBCULT before broader
-                            community installation. The pilot is where we check
-                            setup, permissions, and what happens when a real
-                            server uses the tools.
-                        </p>
-                        <p>
-                            Public installation is not open yet. If you already
-                            have pilot access, your dashboard is ready to sign
-                            in.
-                        </p>
-                        <Link className="lp-cta" to="/login">
-                            Pilot sign in{' '}
-                            <ArrowUpRight size={20} aria-hidden="true" />
-                        </Link>
-                    </div>
-                    <div className="lp-pilot-stamp" aria-hidden="true">
-                        <img
-                            src={`/brand/backline/${inverseMark}.svg`}
-                            alt=""
-                            width="240"
-                            height="240"
-                        />
-                        <span>
-                            BACKLINE
-                            <br />
-                            CREW TOOLS / VOL. 01
-                        </span>
+                    <div className="lp-pilot">
+                        <div>
+                            <span className="lp-tape">Private pilot</span>
+                            <h2 id="bl-pilot-title">Not on tour yet.</h2>
+                            <p>
+                                Backline is a release candidate running with the
+                                SUBCULT community. Public installation is not
+                                open. If you already have pilot access, your
+                                dashboard is ready to sign in.
+                            </p>
+                        </div>
+                        <div className="lp-actions">
+                            <Link
+                                className="lp-button lp-button-primary"
+                                to="/login"
+                            >
+                                Pilot sign in <Icon name="arrow" />
+                            </Link>
+                            <a
+                                className="lp-button lp-button-secondary"
+                                href={source}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Read the source <Icon name="external" />
+                            </a>
+                        </div>
                     </div>
                 </section>
 
-                <section
-                    className="lp-faq bl-section"
-                    aria-labelledby="bl-faq-title"
-                >
-                    <div>
-                        <p className="lp-eyebrow">BEFORE YOU ASK</p>
-                        <h2 id="bl-faq-title">A few practical things.</h2>
+                <section className="lp-section" aria-labelledby="bl-faq-title">
+                    <div className="lp-section-head">
+                        <h2 id="bl-faq-title">A few practical things</h2>
                     </div>
-                    <div className="lp-faq-list">
+                    <div className="lp-faq">
                         <details>
                             <summary>Can I add Backline to my server?</summary>
                             <p>
@@ -437,22 +415,18 @@ export default function BacklineLanding() {
                     </div>
                 </section>
             </main>
+
             <footer className="lp-footer">
-                <img
-                    src="/brand/backline/wordmark.svg"
-                    alt="Backline"
-                    width="470"
-                    height="132"
-                />
-                <p>
-                    A tool from <a href="https://subcult.tv/">SUBCULT</a>.<br />
-                    For the people behind the community.
-                    <br />
+                <span>
+                    Backline · a tool from{' '}
+                    <a href="https://subcult.tv/">SUBCULT</a>. For the people
+                    behind the community.
+                </span>
+                <span>
                     <a href="https://subcult.tv/support">Support SUBCULT</a>.
                     Membership does not grant pilot access or moderation
                     services.
-                </p>
-                <a href="#bl-title">Back to the top ↑</a>
+                </span>
             </footer>
         </div>
     );

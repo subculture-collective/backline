@@ -41,7 +41,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
         const variants = {
             primary:
-                'bg-bl-action hover:bg-bl-action/90 text-white focus:ring-bl-accent',
+                'bg-bl-action hover:brightness-105 text-bl-on-action focus:ring-bl-accent',
             secondary:
                 'border-bl-border bg-bl-surface dark:bg-bl-surface hover:bg-bl-recessed dark:hover:bg-bl-border text-bl-ink dark:text-bl-ink focus:ring-bl-border',
             danger: 'bg-bl-danger-solid hover:bg-bl-danger-solid/90 text-white focus:ring-bl-danger',

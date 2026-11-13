@@ -1,15 +1,14 @@
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
-import { useTheme } from '../contexts/ThemeContext';
 import { useSession } from '../hooks/useSession';
 
+import { Mark } from './brand/RoadCase';
 import SessionStatus from './SessionStatus';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
 import { ThemeToggle } from './ui/ThemeToggle';
 
 export default function BrandHeader() {
     const { pathname } = useLocation();
-    const { effectiveTheme } = useTheme();
     const { session } = useSession(pathname !== '/auth/callback');
     if (pathname === '/' && !session) return null;
 
@@ -17,10 +16,7 @@ export default function BrandHeader() {
         <header className="bl-app-header">
             <div className="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-4">
                 <Link to="/" className="bl-app-logo" aria-label="Backline home">
-                    <img
-                        src={`/brand/backline/mark${effectiveTheme === 'dark' ? '-light' : ''}.svg`}
-                        alt=""
-                    />
+                    <Mark />
                     <span>Backline</span>
                 </Link>
                 <nav

@@ -8,9 +8,9 @@ export function ThemedToaster() {
                 style: {
                     background: 'rgb(var(--bl-panel))',
                     color: 'rgb(var(--bl-ink))',
-                    border: '2px solid rgb(var(--bl-border))',
-                    borderRadius: '4px',
-                    fontFamily: 'Backline Space, sans-serif',
+                    border: '1px solid rgb(var(--bl-border-strong))',
+                    borderRadius: '3px',
+                    fontFamily: 'Backline Sans, system-ui, sans-serif',
                 },
                 success: {
                     iconTheme: {

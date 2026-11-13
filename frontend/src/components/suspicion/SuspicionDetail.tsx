@@ -55,7 +55,7 @@ function SuspicionDetail() {
                     </p>
                     <button
                         onClick={() => navigate('/suspicion')}
-                        className="px-4 py-2 bg-bl-action text-white rounded hover:bg-bl-action"
+                        className="px-4 py-2 bg-bl-action text-bl-on-action rounded hover:brightness-105"
                     >
                         Back to Suspicion List
                     </button>
@@ -277,7 +277,7 @@ function SuspicionDetail() {
                             onClick={() =>
                                 navigate(`/timeline/${suspicion.userId}`)
                             }
-                            className="w-full px-4 py-3 bg-bl-action text-white rounded-lg hover:bg-bl-action font-medium transition-colors"
+                            className="w-full px-4 py-3 bg-bl-action text-bl-on-action rounded-lg hover:brightness-105 font-medium transition-colors"
                         >
                             View Activity Timeline
                         </button>
@@ -291,7 +291,7 @@ function SuspicionDetail() {
                             onClick={() =>
                                 toast('Watch list feature coming soon!')
                             }
-                            className="w-full px-4 py-3 bg-bl-recessed text-white rounded-lg hover:bg-bl-recessed font-medium transition-colors"
+                            className="w-full px-4 py-3 bg-bl-recessed text-bl-ink rounded-lg hover:bg-bl-surface font-medium transition-colors"
                         >
                             Add to Watch List
                         </button>

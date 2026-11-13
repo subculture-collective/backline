@@ -28,6 +28,6 @@ export function resolveBrandColor(role: keyof typeof chartColors): string {
     return value
         ? `rgb(${value})`
         : role === 'canvas' || role === 'panel'
-          ? '#f0ece4'
-          : '#100b19';
+          ? '#f0ede5'
+          : '#1c1d1f';
 }

@@ -27,7 +27,7 @@ export default defineConfig({
                 href: '/brand/backline/favicon.svg',
             },
         ],
-        ['meta', { name: 'theme-color', content: '#8b5cf6' }],
+        ['meta', { name: 'theme-color', content: '#161719' }],
         ['meta', { property: 'og:type', content: 'website' }],
         ['meta', { property: 'og:locale', content: 'en' }],
         ['meta', { property: 'og:title', content: 'Backline Documentation' }],

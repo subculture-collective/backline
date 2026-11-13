@@ -125,7 +125,7 @@ function ExportButton({
         <div className="relative group">
             <button
                 disabled={disabled || isExporting || events.length === 0}
-                className="flex items-center gap-2 px-4 py-2 bg-bl-action text-white rounded-lg hover:bg-bl-action disabled:bg-bl-recessed disabled:cursor-not-allowed transition-colors text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 bg-bl-action text-bl-on-action rounded-lg hover:brightness-105 disabled:bg-bl-recessed disabled:cursor-not-allowed transition-colors text-sm font-medium"
             >
                 <Download className="h-4 w-4" />
                 <span>{isExporting ? 'Exporting...' : 'Export'}</span>

@@ -1,18 +1,36 @@
 @font-face {
-    font-family: 'Backline Oswald';
-    src: url('/brand/backline/fonts/Oswald.woff2') format('woff2');
+    font-family: 'Backline Display';
+    src: url('/brand/backline/fonts/Barlow-Condensed-700.woff2') format('woff2');
     font-weight: 700;
     font-display: swap;
 }
 @font-face {
-    font-family: 'Backline Space';
-    src: url('/brand/backline/fonts/Space-Grotesk.woff2') format('woff2');
-    font-weight: 400 700;
+    font-family: 'Backline Display';
+    src: url('/brand/backline/fonts/Barlow-Condensed-800.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Backline Sans';
+    src: url('/brand/backline/fonts/IBM-Plex-Sans.woff2') format('woff2');
+    font-weight: 400 600;
     font-display: swap;
 }
 @font-face {
     font-family: 'Backline Mono';
-    src: url('/brand/backline/fonts/JetBrains-Mono.woff2') format('woff2');
+    src: url('/brand/backline/fonts/IBM-Plex-Mono-400.woff2') format('woff2');
     font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Backline Mono';
+    src: url('/brand/backline/fonts/IBM-Plex-Mono-500.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Backline Mono';
+    src: url('/brand/backline/fonts/IBM-Plex-Mono-600.woff2') format('woff2');
+    font-weight: 600;
     font-display: swap;
 }

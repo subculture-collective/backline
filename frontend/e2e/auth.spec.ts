@@ -72,7 +72,10 @@ test.describe('authentication boundaries', () => {
         );
         await expect(page).toHaveURL(/\/servers$/);
         recovered = true;
-        await page.getByRole('banner').getByRole('button', { name: 'Retry session check' }).click();
+        await page
+            .getByRole('banner')
+            .getByRole('button', { name: 'Retry session check' })
+            .click();
         await expect(page).toHaveURL(/\/login$/);
     });
 });
@@ -88,7 +91,7 @@ test.describe('landing page', () => {
         );
         await expect(
             page.getByRole('heading', {
-                name: /KEEP YOUR\s+PEOPLE\s+TOGETHER\./,
+                name: 'The gear behind your community.',
             })
         ).toBeVisible();
     });

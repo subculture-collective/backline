@@ -1,33 +1,38 @@
-/* Backline Poster Crew identity; generated assets are shared with the app. */
+/* Backline Road Case identity; fonts and marks are shared with the app. */
 :root {
-    --vp-font-family-base: 'Backline Space', sans-serif;
+    --vp-font-family-base: 'Backline Sans', system-ui, sans-serif;
     --vp-font-family-mono: 'Backline Mono', monospace;
-    --vp-c-brand-1: #6d28d9;
-    --vp-c-brand-2: #7c3aed;
-    --vp-c-brand-3: #6d28d9;
-    --vp-c-brand-soft: rgba(139, 92, 246, 0.12);
-    --vp-c-bg: #f0ece4;
-    --vp-c-bg-alt: #e8e0d7;
-    --vp-c-bg-soft: #fffcf6;
-    --vp-c-text-1: #100b19;
-    --vp-c-text-2: #5e4f69;
-    --vp-button-brand-text: #ffffff;
-    --vp-button-brand-hover-text: #ffffff;
-    --vp-button-brand-active-text: #ffffff;
-    --vp-button-brand-bg: #6d28d9;
-    --vp-button-brand-hover-bg: #7c3aed;
-    --vp-button-brand-active-bg: #6d28d9;
-    --vp-home-hero-name-color: #6d28d9;
+    --vp-c-brand-1: #855900;
+    --vp-c-brand-2: #6e4a00;
+    --vp-c-brand-3: #855900;
+    --vp-c-brand-soft: rgba(242, 181, 28, 0.18);
+    --vp-c-bg: #f0ede5;
+    --vp-c-bg-alt: #e3ded2;
+    --vp-c-bg-soft: #faf8f3;
+    --vp-c-text-1: #1c1d1f;
+    --vp-c-text-2: #57534a;
+    --vp-c-divider: #c4bdae;
+    --vp-button-brand-text: #1c1d1f;
+    --vp-button-brand-hover-text: #1c1d1f;
+    --vp-button-brand-active-text: #1c1d1f;
+    --vp-button-brand-bg: #f2b51c;
+    --vp-button-brand-hover-bg: #f5c23f;
+    --vp-button-brand-active-bg: #e0a40f;
+    --vp-button-brand-border: #a8780a;
+    --vp-home-hero-name-color: #1c1d1f;
 }
 .dark {
-    --vp-c-brand-1: #bda4ff;
-    --vp-c-brand-2: #d3bfff;
-    --vp-c-bg: #100b19;
-    --vp-c-bg-alt: #171023;
-    --vp-c-bg-soft: #21182f;
-    --vp-c-text-1: #f0ece4;
-    --vp-c-text-2: #c2b4cf;
-    --vp-home-hero-name-color: #bda4ff;
+    --vp-c-brand-1: #f2b51c;
+    --vp-c-brand-2: #f5c23f;
+    --vp-c-brand-3: #f2b51c;
+    --vp-c-bg: #161719;
+    --vp-c-bg-alt: #101113;
+    --vp-c-bg-soft: #1f2023;
+    --vp-c-text-1: #ece8dd;
+    --vp-c-text-2: #a9a499;
+    --vp-c-divider: #3b3c41;
+    --vp-button-brand-border: #f2b51c;
+    --vp-home-hero-name-color: #ece8dd;
 }
 h1,
 h2,
@@ -36,13 +41,23 @@ h4,
 .VPNavBarTitle,
 .VPHero .name,
 .VPHero .text {
-    font-family: 'Backline Oswald', sans-serif;
+    font-family: 'Backline Display', 'Arial Narrow', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+}
+.VPHero .name,
+.VPHero .text,
+.VPNavBarTitle {
+    text-transform: uppercase;
 }
 .VPButton,
 .VPFeature {
-    border-radius: 4px;
+    border-radius: 3px;
 }
 :focus-visible {
-    outline: 3px solid var(--vp-c-brand-1);
-    outline-offset: 3px;
+    outline: 3px solid #1c1d1f;
+    outline-offset: 2px;
+}
+.dark :focus-visible {
+    outline-color: #f2b51c;
 }

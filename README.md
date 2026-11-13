@@ -1,4 +1,4 @@
-<p align="center"><img src="brand/backline/social-banner.png" alt="Backline banner: the BL monogram beside the Backline wordmark and the line &quot;The tools behind your community.&quot; in ink on purple." width="100%"></p>
+<p align="center"><img src="brand/backline/social-banner.png" alt="Backline banner: the road-case mark beside the Backline wordmark and the line &quot;The gear behind your community.&quot; on a dark case-black background." width="100%"></p>
 
 # Backline
 

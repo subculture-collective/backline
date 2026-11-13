@@ -1,23 +1,35 @@
-# Backline landing page and selected identity
+# Backline identity: Road Case
 
-Poster Crew was selected by the owner on October 4, 2026. Maintained brand masters, fonts, generator and full usage guide belong to SUBCULT Studio at `studio/branding/library/brands/backline/`. This product carries only the selected generated assets under `frontend/public/brand/backline/`; `brand/backline/source-provenance.json` records their source and hashes.
+Road Case replaced the Poster Crew identity in November 2026. Poster Crew shared its look with subcult.tv; Road Case gives Backline its own.
 
-The dashboard now shares this identity through the [app design system](./APP-SYSTEM.md).
+A band's backline is the gear and crew behind the stage. The interface borrows from road cases and mixing desks: hardware corners, tape labels, status LEDs, and modules that stay muted until you bring them up. The two themes are named for the same world: **Stage** (dark) and **Load-in** (light).
 
-The product's landing page is `/`. Server setup is `/servers`, still behind RequireAuth. OAuth completion redirects to `/servers`; moderation and observed-activity links return there. `/login`, `/auth/callback` and `/status` retain their routes. The landing page does not create an invite, grant server access, change module defaults or deploy a service.
+The dashboard carries this identity through the [app design system](./APP-SYSTEM.md).
 
-The page reads the shared app tokens for its canvas, text, borders and accent, so it follows the dashboard's light and dark modes. Purple #8b5cf6 and green #00ff88 remain fixed identity colors with ink #100b19 type on them; the illustrative board stays paper #f0ece4. Oswald Bold heads the display; Space Grotesk handles reading and controls; JetBrains Mono labels examples. Fonts are self-hosted with licenses. SVG logo exports use outlined type.
+## Rules
 
-The hero, numbered tool descriptions, setup sequence, private-pilot section and native-details FAQ describe the current implementation scope. The hero illustration contains fictional examples and is labeled as such. Modules remain opt-in per server. Ticket access copy preserves Discord administrator/owner access. There is no public installation, price, provider-delivery claim or sign-up collection.
+- **Amber is for actions.** The primary button, and focus on Stage. Load-in focuses in ink so the ring always shows. The mark's latch is the one non-action use of amber.
+- **Green means live, orange means someone needs to act, crimson means it failed.** Each state also has a word, and the failed LED is square, so no state depends on colour alone.
+- **Corners mark attention.** Orange L-brackets go on the one panel that needs someone (a module waiting on the operator). Neutral hardware brackets frame the landing page's example rack and nothing else.
+- **Muted things recede.** Off modules sit in a recessed, dashed surface; live modules sit on a raised panel.
+- **Type:** Barlow Condensed caps for page and section headings, numerals, the wordmark and the primary button. IBM Plex Sans for reading, navigation and controls. IBM Plex Mono for IDs, counts, labels and states. All three are self-hosted with their OFL licences in `frontend/public/brand/backline/fonts/`.
 
-On screens below 760px, navigation becomes a labeled expandable menu, the hero and example stack, tool descriptions and steps become single-column layouts, and the pilot stamp fits inside its container. Focus outlines remain visible; reduced-motion preferences remove action movement. Keep the existing consent component's behavior separate from this identity work.
+## Mark and assets
 
-The Open Graph image is included without a guessed canonical domain. Before a hosted release, set an absolute image URL and canonical URL for the chosen deployment origin, verify social preview fetching there, and review the public release separately from this local implementation.
+The mark is a road case: handle, four corner plates and an amber latch with a keyhole. `mark.svg` is for light backgrounds, `mark-light.svg` for dark ones, and `favicon.svg` is a filled version for browser tabs. In React, use `Mark` from `frontend/src/components/brand/RoadCase.tsx`; it follows the theme through `currentColor` and the `--bl-*` tokens. The same file holds the landing page icons (24px grid, 1.75px stroke, square ends).
 
-Rebuild the selected assets from Studio with `python studio/branding/library/brands/backline/build_assets.py --product-root /path/to/backline`. The exporter updates only Backline's generated files and source receipt. Do not edit the PNG derivatives separately.
+`og.png`, `social-banner.png`, `social-square.png`, `apple-touch-icon.png`, `avatar.png` and `favicon.ico` are rendered from the SVG mark and the fonts by `brand/backline/render_assets.py`. Run it after changing the mark, the fonts or the palette, then commit the outputs; it rewrites `brand/backline/source-provenance.json` with their hashes. Do not edit the PNGs by hand.
 
-## Local verification
+Poster Crew's masters still live in SUBCULT Studio (`studio/branding/library/brands/backline/`). Road Case's masters live in this repository until Studio adopts them.
 
-The production TypeScript/Vite build passes. Changed frontend files pass ESLint; the full frontend lint run retains 32 errors in unchanged analytics/test files. The 12 existing server-setup and moderation tests pass. All 23 exported assets match Studio source bytes and manifest hashes; the 12 SVG masters parse.
+## Landing page
 
-The T3 browser rendered the desktop page, loaded the fonts and logo files, opened the native FAQ, followed the pilot sign-in link, and redirected an anonymous `/servers` request to `/login`. A 390px same-origin browser frame had no horizontal overflow; its menu expanded, followed the tool-section anchor, and closed. T3 viewport resize timed out, so this is a browser CSS layout check, not a phone/device test. OAuth provider completion, production deployment and hosted social preview fetching remain separate verification.
+The landing page is `/`. Server setup is `/servers`, behind RequireAuth; OAuth completion redirects there. `/login`, `/auth/callback` and `/status` keep their routes. The landing page does not create an invite, grant server access, change module defaults or deploy a service.
+
+It reads the shared tokens, so it follows Stage and Load-in, and its own theme switch sets the same preference as the dashboard's. The hero's example rack shows five module groups as channel strips; it is labelled as a fictional example. "What's in the case" lists all 23 modules in their five groups, "Soundcheck" gives the three setup steps, and the pilot section and FAQ describe the current scope: there is no public installation, price, provider-delivery claim or sign-up collection. Styles are scoped under `.backline` with `lp-` class names.
+
+Below 760px the navigation drops to a scrolling row under the brand. Below 480px the rack shows numbers, faders and LEDs, with a readable key underneath, and the theme switch shows icons only.
+
+## Verification
+
+Before a release: frontend lint, type check, tests and the production build (with prerender), then a browser pass over the landing page (both themes and 390px), login, overview, server setup (both themes and 390px), moderation and status, checking that the three fonts load and nothing scrolls sideways. Fixture API responses can verify layout without Discord credentials but do not qualify OAuth, authorization or Discord delivery.

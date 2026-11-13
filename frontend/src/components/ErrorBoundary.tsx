@@ -99,7 +99,7 @@ class ErrorBoundary extends Component<Props, State> {
                         <div className="flex gap-3">
                             <button
                                 onClick={this.handleReset}
-                                className="flex-1 rounded bg-bl-action px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-bl-action/90"
+                                className="flex-1 rounded bg-bl-action px-4 py-2 text-sm font-medium text-bl-on-action transition-colors hover:brightness-105"
                             >
                                 Try Again
                             </button>

@@ -37,7 +37,7 @@ export default function ServerSwitcher({
             ) : (
                 <span
                     aria-hidden="true"
-                    className="w-8 h-8 rounded-full bg-bl-action text-white inline-flex items-center justify-center font-display"
+                    className="w-8 h-8 rounded-full bg-bl-surface text-bl-ink ring-1 ring-bl-border inline-flex items-center justify-center font-display"
                 >
                     {current?.name.slice(0, 1).toUpperCase() ?? '?'}
                 </span>

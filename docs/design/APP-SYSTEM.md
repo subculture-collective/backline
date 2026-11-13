@@ -1,49 +1,54 @@
 # Backline app design system
 
-The app extends the selected Poster Crew identity in [BACKLINE.md](./BACKLINE.md). Brand masters, logos and licensed fonts remain owned by SUBCULT Studio. Product styles use the generated assets; changing dashboard tokens does not modify those masters.
+The app carries the Road Case identity in [BACKLINE.md](./BACKLINE.md). The mark, fonts and generated brand images live in `frontend/public/brand/backline/`.
 
 ## Tokens and themes
 
-[Global CSS](../../frontend/src/index.css) owns theme values. [Tailwind configuration](../../frontend/tailwind.config.js) exposes them as `bl` utilities with opacity support. Light mode uses warm paper with dark ink; dark mode uses ink with paper text. Light, dark and system selection retain the existing storage and keyboard shortcut.
+[Global CSS](../../frontend/src/index.css) owns theme values. [Tailwind configuration](../../frontend/tailwind.config.js) exposes them as `bl` utilities with opacity support. Load-in (light) is warm off-white with dark ink; Stage (dark) is case black with off-white text. Light, dark and system selection keep the existing storage and keyboard shortcut.
 
-| Role                                             | Use                                                   |
-| ------------------------------------------------ | ----------------------------------------------------- |
-| `canvas`, `recessed`, `deep`                     | Page backgrounds and nested regions                   |
-| `panel`, `surface`                               | Cards, inputs and secondary controls                  |
-| `ink`, `muted`                                   | Primary and supporting text                           |
-| `border`                                         | Panel and input boundaries                            |
-| `accent`                                         | Purple links, focus indicators and chart marks        |
-| `action`                                         | Solid purple backgrounds with white labels            |
-| `success`, `warning`, `danger`                   | Theme-aware status text and subtle status backgrounds |
-| `success-solid`, `warning-solid`, `danger-solid` | Solid status backgrounds with white labels            |
+| Role                                             | Use                                                                |
+| ------------------------------------------------ | ------------------------------------------------------------------ |
+| `canvas`, `recessed`, `deep`                     | Page background, wells (table heads, muted modules, workspace bar) |
+| `panel`, `surface`                               | Cards and raised panels; selected and hover surfaces               |
+| `ink`, `muted`                                   | Primary and supporting text                                        |
+| `border`, `border-strong`                        | Panel boundaries; control and dashed muted boundaries              |
+| `hardware`                                       | Case corners, list marks, the current-page bar                     |
+| `accent`                                         | Text links and chart marks (amber on Stage, dark amber on Load-in) |
+| `focus`                                          | Focus rings: amber on Stage, ink on Load-in                        |
+| `action`, `on-action`, `action-edge`             | Amber primary buttons with dark ink labels and an edge on Load-in  |
+| `success`, `warning`, `danger`                   | Status text                                                        |
+| `led-live`, `led-warn`, `led-danger`, `led-off`  | Status LEDs                                                        |
+| `success-solid`, `warning-solid`, `danger-solid` | Solid status backgrounds with white labels                         |
 
-Use semantic roles for new components. Do not add Catppuccin classes or fixed gray/blue palettes. Keep `accent` separate from `action`: dark mode lightens accent text, while action backgrounds stay dark enough for white labels. Status meanings also need text or icons, rather than color alone.
+Use semantic roles for new components. Do not add fixed palettes. Amber is only for actions and focus, so selection uses a panel face with an ink bar instead (chips, the nav, theme switches). Labels on `bg-bl-action` use `text-bl-on-action`, never white. Status meanings need a word or icon as well as colour; `Badge` renders an LED and a mono word, and the danger LED is square.
 
-The landing page is built on the same tokens, so it follows light and dark mode. Its purple and green identity blocks keep fixed dark ink type in both themes. Its styles are scoped under `.backline` with `lp-` class names so they cannot collide with the `bl-` component classes.
+The landing page is built on the same tokens, so it follows both themes. Its styles are scoped under `.backline` with `lp-` class names so they cannot collide with the `bl-` component classes.
 
 ## Typography and layout
 
-Oswald Bold is the heading and wordmark face. Space Grotesk is the body and control face. JetBrains Mono is for code and technical labels. All three are self-hosted globally through the shared font stylesheet. The VitePress site reads the same generated public assets and uses the Backline fonts and palette. Use Tailwind's normal type scale: small supporting text, base body text, extra-large section headings and three-extra-large page headings.
+Barlow Condensed (700, 800) sets page and section headings, numerals, stat values, the wordmark and the primary button, in caps. IBM Plex Sans sets body text, navigation, controls and module titles. IBM Plex Mono sets IDs, counts, table heads, eyebrows and states. All three are self-hosted through the shared font stylesheet, which the VitePress docs import as well.
 
-Keep page content inside the existing maximum-width containers. Use 16px mobile gutters and 32px desktop gutters, with 16–32px spacing between sections. Outlined panels use small corners; shared cards add a restrained offset shadow. Reserve circles for avatars, status dots and compact icon badges.
+Keep page content inside the existing maximum-width containers. Use 16px mobile gutters and 32px desktop gutters, with 16–32px spacing between sections. Panels use 1px borders and 3px corners, with no offset shadows. Controls are at least 44px tall, except the small button size (36px) inside dense cards. Reserve circles for avatars and LEDs.
 
 ## Components and application shell
 
 [BrandHeader](../../frontend/src/components/BrandHeader.tsx) provides the Backline mark, home link, page navigation, language control and theme switch on app routes. The landing page keeps its own navigation. Login, OAuth callback and status use public links; protected routes use overview, server setup, moderation, activity and status links. Access enforcement remains in the existing route guards.
 
+Module cards show their state through the surface: enabled cards are raised panels, disabled cards are recessed with a dashed border, and a module waiting on the operator gets an orange border and orange corner brackets.
+
 Every protected page is built from the same parts, exported from [`components/ui`](../../frontend/src/components/ui/index.ts):
 
-| Part                                   | Purpose                                                                                                               |
-| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `Page`, `PageHeader`, `Section`        | Main landmark with gutters, an eyebrow/title/description header with an actions slot, and titled sections             |
-| `ServerSwitcher`                       | The server picker shown on every server-scoped page; selection lives in the guild store                              |
-| `Input`, `Select`, `Textarea`, `Checkbox` | Labelled controls with hint and error text wired through `aria-describedby`; `compact` keeps short controls narrow |
-| `Alert`                                | Inline message with icon and tone. Danger announces as `alert`, other tones as `status`; pass `role="none"` to opt out |
-| `Badge`                                | Uppercase mono label for states and categories                                                                        |
-| `Stat`                                 | Key figure inside a `<dl>`                                                                                            |
-| `Table`                                | Scrollable data table with a hidden caption                                                                           |
-| `EmptyState`                           | Why a list is empty and what to do next                                                                               |
-| `Button`, `Card`, `StatCard`, skeletons | Existing primitives, unchanged                                                                                       |
+| Part                                      | Purpose                                                                                                                |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `Page`, `PageHeader`, `Section`           | Main landmark with gutters, an eyebrow/title/description header with an actions slot, and titled sections              |
+| `ServerSwitcher`                          | The server picker shown on every server-scoped page; selection lives in the guild store                                |
+| `Input`, `Select`, `Textarea`, `Checkbox` | Labelled controls with hint and error text wired through `aria-describedby`; `compact` keeps short controls narrow     |
+| `Alert`                                   | Inline message with icon and tone. Danger announces as `alert`, other tones as `status`; pass `role="none"` to opt out |
+| `Badge`                                   | State: LED plus an uppercase mono word. `accent` tone is a bordered category label without an LED                      |
+| `Stat`                                    | Key figure inside a `<dl>`                                                                                             |
+| `Table`                                   | Scrollable data table with a hidden caption                                                                            |
+| `EmptyState`                              | Why a list is empty and what to do next                                                                                |
+| `Button`, `Card`, `StatCard`, skeletons   | Existing primitives, unchanged                                                                                         |
 
 Plain elements can adopt the same look through classes in [the global stylesheet](../../frontend/src/index.css): `bl-button-primary`, `bl-button-secondary`, `bl-button-danger` and `bl-button-sm` for buttons and links; `bl-input`, `bl-input-compact`, `bl-label`, `bl-check`, `bl-legend`, `bl-hint` for forms; `bl-form-notice` and `bl-form-alert` for inline form results; `bl-badge-*`, `bl-alert-*`, `bl-chip`, `bl-eyebrow-app`, `bl-details`, `bl-stat` and `bl-table` for the rest. The module configuration forms use these classes rather than ad-hoc utilities.
 
